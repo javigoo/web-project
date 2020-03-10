@@ -1,8 +1,8 @@
 # web-project
 
 ### Activar/desactivar venv ###
-  -source venv/bin/activate 
-  -deactivate
+  source venv/bin/activate  
+  deactivate
 
 ### Instalar requerimientos ###
   pip3 install -r requirements.txt

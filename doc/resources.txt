@@ -1,0 +1,17 @@
+1. Implement, correctly, the model you have proposed.
+
+2. Activate the Django Admin interface to add, modify and delete instances.
+
+3. Add authentication and user management (use Django built-in authentication or OAuth2).
+
+4. Adhere, as much as possible, to the 12factor guidelines.
+
+5. Implement a deployment schema in order to:
+
+	a. Integrate TravisCI as a continuous integration tool.
+
+	b. Run the application as a docker container.
+
+	c. Deploy the application on Heroku platform.
+
+		* https://devcenter.heroku.com/articles/build-docker-images-heroku-yml

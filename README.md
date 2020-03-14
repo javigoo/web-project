@@ -1,12 +1,114 @@
-# web-project
+  # Project Title
 
-### Activar/desactivar venv ###
-  source venv/bin/activate  
-  deactivate
+  One Paragraph of project description goes here
 
-### Instalar requerimientos ###
+  ## Getting Started
+
+  These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+
+  ### Prerequisites
+
+  What things you need to install the software and how to install them
+
+  - Install python3
+  ```
+  $ sudo apt-get update
+  $ sudo apt-get install python3
+  ```
+  - Install pip for Python 3
+  ```
+  $ sudo apt install python3-pip
+  ```
+
+  ### Installing
+
+  A step by step series of examples that tell you how to get a development env running
+
+  Clone the repository and change to web-project directory
+  ```
+  $ git clone https://github.com/Javigoo/web-project.git
+  $ cd web-project/
+  ```
+
+  Activate the virtual environment using:
+  ```
+  $ python3 -m venv venv
+  $ source venv/bin/activate
+  ```
+
+  We can deactivate it typing:
+  ```
+  $ deactivate
+  ```
+
+  “requirements.txt” is a file containing a list of items to be installed using pip
+  install like so:
+  ```
   pip3 install -r requirements.txt
+  ```
 
-### Activar web_application ###
-  python3 manage.py migrate  
+  Apply a migration to tell Django what changes need to be made to the database
+  ```
+  python3 manage.py migrate
+  ```
+
+  Check if the install worked successfully running it
+  ```
   python3 manage.py runserver
+  ```
+
+  End with an example of getting some data out of the system or using it for a little demo
+
+  ## Running the tests
+
+  Explain how to run the automated tests for this system
+
+  ### Break down into end to end tests
+
+  Explain what these tests test and why
+
+  ```
+  Give an example
+  ```
+
+  ### And coding style tests
+
+  Explain what these tests test and why
+
+  ```
+  Give an example
+  ```
+
+  ## Deployment
+
+  Add additional notes about how to deploy this on a live system
+
+  ## Built With
+
+  * [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
+  * [Maven](https://maven.apache.org/) - Dependency Management
+  * [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+
+  ## Contributing
+
+  Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
+
+  ## Versioning
+
+  We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags).
+
+  ## Authors
+
+  * **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+
+  See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+
+  ## License
+
+  This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+
+  ## Acknowledgments
+
+  * Hat tip to anyone whose code was used
+  * Inspiration
+  * etc

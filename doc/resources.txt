@@ -6,12 +6,14 @@
 
 4. Adhere, as much as possible, to the 12factor guidelines.
 
+	- https://12factor.net/
+
 5. Implement a deployment schema in order to:
 
 	a. Integrate TravisCI as a continuous integration tool.
 
 	b. Run the application as a docker container.
 
-	c. Deploy the application on Heroku platform.
+	c. Deploy the application on Heroku platform (Using a docker image, you will get an extra point)
 
-		* https://devcenter.heroku.com/articles/build-docker-images-heroku-yml
+		- https://devcenter.heroku.com/articles/build-docker-images-heroku-yml

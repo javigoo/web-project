@@ -12,12 +12,12 @@
 
   - Install python3
   ```
-  sudo apt-get update
-  sudo apt-get install python3
+  $ sudo apt-get update
+  $ sudo apt-get install python3
   ```
   - Install pip for Python 3
   ```
-  sudo apt install python3-pip
+  $ sudo apt install python3-pip
   ```
 
   ### Installing
@@ -26,19 +26,19 @@
 
   Clone the repository and change to web-project directory
   ```
-  git clone https://github.com/Javigoo/web-project.git
-  cd web-project/
+  $ git clone https://github.com/Javigoo/web-project.git
+  $ cd web-project/
   ```
 
   Activate the virtual environment using:
   ```
-  python3 -m venv venv
-  source venv/bin/activate
+  $ python3 -m venv venv
+  $ source venv/bin/activate
   ```
 
   We can deactivate it typing:
   ```
-  deactivate
+  $ deactivate
   ```
 
   “requirements.txt” is a file containing a list of items to be installed using pip
@@ -85,16 +85,30 @@
 
   ## Built With
 
-  * [Django](https://www.djangoproject.com/) - The web framework used
+  * [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
+  * [Maven](https://maven.apache.org/) - Dependency Management
+  * [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+
+  ## Contributing
+
+  Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
+
+  ## Versioning
+
+  We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags).
 
   ## Authors
 
-  * **Javier Roig Gregorio** - [Javigoo](https://github.com/Javigoo)
-  * **Jorge Nueno Abril** - [Jorgics](https://github.com/jorgics)
-  * **Gabriel Garcia Scoles** - [Gabygarcia98](https://github.com/gabygarcia98)
-  * **Jose Miguel Avellana Lopez** - [Jal04](https://github.com/jal04)
-  * **Víctor Alcobé Sorolla** - [Valcobe](https://github.com/valcobe)
+  * **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+
+  See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
 
   ## License
 
   This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+
+  ## Acknowledgments
+
+  * Hat tip to anyone whose code was used
+  * Inspiration
+  * etc

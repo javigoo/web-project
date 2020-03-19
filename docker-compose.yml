@@ -3,8 +3,8 @@ version: '3'
 services:
   django:
     build: .
-    command: python src/manage.py runserver 0.0.0.0:8000
-    #volumes:
-    #  - '.:/src'
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/code
     ports:
       - "8000:8000"

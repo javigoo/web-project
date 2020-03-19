@@ -1,10 +1,10 @@
 FROM python:3.7
+ENV PYTHONUNBUFFERED 1
 
-ENV PYTHONUNBUFFERED=1
+RUN mkdir /code
+WORKDIR /code
 
-RUN mkdir /src
+COPY requirements.txt /code/
+RUN pip install -r requirements.txt
 
-COPY requirements.txt /src
-RUN pip install -r src/requirements.txt
-
-COPY . /src
+COPY . /code/

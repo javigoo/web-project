@@ -20,5 +20,5 @@ from rest_framework.authtoken.views import obtain_auth_token
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('token-auth/', obtain_auth_token, name='token_auth'),
-    path('', include('apps.spotify.urls'))
+    path('spotify/', include('apps.spotify.urls'))
 ]

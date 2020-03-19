@@ -5,6 +5,6 @@ services:
     build: .
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
-      - .:/code
+      - .:/code #Para que el codigo se actualice en cada modificacion.
     ports:
       - "8000:8000"

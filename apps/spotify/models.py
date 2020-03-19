@@ -8,6 +8,7 @@ class Artist(models.Model):
 class Song(models.Model):
     name = models.CharField(max_length=200)
     date = models.DateTimeField('date published')
+    views = models.IntegerField(default=0)
 
 class Album(models.Model):
     name = models.CharField(max_length=200)

@@ -18,6 +18,5 @@ from django.urls import path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('token-auth/', obtain_auth_token, name='token_auth'),
 
 ]

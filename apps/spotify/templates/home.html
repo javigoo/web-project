@@ -1,19 +1,22 @@
-<!DOCTYPE html>
-
+{% extends "base.html" %}
 {% load static %}
 
-<html>
-<head>
-<style>
-img {
-  width: 100%;
-  height: 100%;
-}
-</style>
-</head>
-<body>
+{% block page_content %}
+<h1>Artist</h1>
+<h1>Top 10</h1>
+<h1>Playlist</h1>
+{% endblock %}
 
-  <img src="{% static "gato.jpg" %}" alt="gato">
+<!--
 
-</body>
-</html>
+On line 10, we include our project image. Inside the src attribute, we add the
+code {% static project.preview_image %}. This tells Django to look inside the
+static files to find a file matching project.preview_image value.
+
+
+On line 14, we are referring to the link of our project_detail page. Accessing URLs
+in Django is similar to accessing static files. In this case, we are accessing a
+URL path named project_detail, which takes integer arguments corresponding to the
+pk number of the project.
+
+-->

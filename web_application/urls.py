@@ -20,6 +20,7 @@ from django.urls import path, include
 urlpatterns = [
     path('', include('social_django.urls', namespace='social')),
     path('logout/', auth_views.LogoutView.as_view(next_page='/'), name='logout'),
+    path('accounts/', include('django.contrib.auth.urls')),
     
     path('admin/', admin.site.urls),
     path('', include('apps.spotify.urls')),

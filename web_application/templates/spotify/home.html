@@ -1,12 +1,13 @@
 {% extends "base.html" %}
-{% load static %}
+{% load static %}"
 
 {% block page_content %}
+<a href="{% url 'social:begin' 'google-oauth2' %}" class="btn btn-social-icon btn-google-plus"></a>
+<a href="{% url 'logout' %}"></a>
 <h1>Artist</h1>
 <h1>Top 10</h1>
 <h1>Playlist</h1>
 {% endblock %}
-
 <!--
 
 On line 10, we include our project image. Inside the src attribute, we add the

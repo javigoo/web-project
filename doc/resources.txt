@@ -1,5 +1,7 @@
 1. Implement, correctly, the model you have proposed.
 
+	- https://developer.spotify.com/documentation/web-api/quick-start/
+
 2. Activate the Django Admin interface to add, modify and delete instances.
 
 3. Add authentication and user management (use Django built-in authentication or OAuth2).

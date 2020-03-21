@@ -8,7 +8,9 @@
 *.pyc
 __pycache__/
 local_settings.py
-db.sqlite3
+
+#db.sqlite3       Utilizaré temporalmente la bbdd de Django para testear los modelos y templates
+
 db.sqlite3-journal
 media
 

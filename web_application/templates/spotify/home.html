@@ -2,12 +2,20 @@
 {% load static %}"
 
 {% block page_content %}
+    <h1>Spotifly</h1>
+
+    <p>En esta página aparecerán los apartados principales de la aplicación</p>
+    <li>Información artistas</li>
+    <li>Top 10 canciones</li>
+    <li>Crear playlists</li>
+
     <div class="group">
     <a href="{% url 'social:begin' 'google-oauth2' %}" class="btn btn-social-icon btn-google-plus">
         <i class="fa fa-google-plus"></i></a>
-    <a href="{% url 'logout' %}"></a> 
+    <a href="{% url 'logout' %}"></a>
     </div>
 {% endblock %}
+
 <!--
 
 On line 10, we include our project image. Inside the src attribute, we add the

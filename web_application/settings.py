@@ -31,18 +31,7 @@ ALLOWED_HOSTS = ['*']
 # Social Auth Configuration
 
 AUTHENTICATION_BACKENDS = (
-    'social_core.backends.google.GoogleOAuth2',
-    'django.contrib.auth.backends.ModelBackend',
 )
-
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '384889251020-afobagoeukdbkfc9nu91i2getugr5lik.apps.googleusercontent.com'
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '0GJXU8XkymnngJ07DAqQmgN3'
-
-LOGIN_URL = '/auth/login/google-oauth2'
-LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL = '/'
-
-SOCIAL_AUTH_URL_NAMESPACE = 'social'
 
 
 # Application definition
@@ -54,7 +43,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'social_django',
     'apps.spotify',
 ]
 
@@ -74,7 +62,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': ['web_application/templates'],
-        'APP_DIRS': True,
+        'APP_DIRS': False, # No tenemos directorios en cada app.
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',

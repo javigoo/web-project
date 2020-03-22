@@ -27,13 +27,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-
-# Social Auth Configuration
-
-AUTHENTICATION_BACKENDS = (
-)
-
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -62,7 +55,8 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': ['web_application/templates'],
-        'APP_DIRS': False, # No tenemos directorios en cada app.
+        'APP_DIRS': True,  # No tenemos directorios en cada app.
+                            # Si es False salta la excepcion TemplateDoesNotExist at /admin/
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',

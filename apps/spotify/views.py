@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, Http404
-from .models import Song
+from apps.spotify.models import *
 
 
 # Create your views here.

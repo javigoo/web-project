@@ -55,8 +55,8 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': ['web_application/templates'],
-        'APP_DIRS': True,  # No tenemos directorios en cada app.
-                            # Si es False salta la excepcion TemplateDoesNotExist at /admin/
+        'APP_DIRS': True,  # Para Django todos los directorios templates son el mismo.
+                            # Si es False solo permite usar el directorio de web_aplication.
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',

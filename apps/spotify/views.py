@@ -5,11 +5,11 @@ from apps.spotify.models import *
 
 # Create your views here.
 def home(request):
-    return render(request, 'home.html', {})
+    return render(request, 'spotify/home.html', {})
 
 def top_songs(request):
     try:
         lista = Song.objects.order_by('views').reverse()[:10] #Top 10 Songs by views
     except len(lista)==0:
         raise Http404("No tenemos canciones.")
-    return render(request, 'topsongs.html', {'topsonglist':lista})
+    return render(request, 'spotify/topsongs.html', {'topsonglist':lista})

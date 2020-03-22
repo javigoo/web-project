@@ -9,7 +9,7 @@
       Información artistas
     </li>
     <li>
-      <a href="/top">Top 10 canciones</a> <!-- REFACTORIZAR  href="" con sintaxis Django -->
+      <a href="{% url 'spotify:topsongs' %}">Top 10 canciones</a> <!-- Apunta a la url con name: topsongs -->
     </li>
     <li>
       Crear playlists

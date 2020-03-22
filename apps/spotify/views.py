@@ -7,7 +7,7 @@ from apps.spotify.models import *
 def home(request):
     return render(request, 'home.html', {})
 
-def topSongs(request):
+def top_songs(request):
     try:
         lista = Song.objects.order_by('views').reverse()[:10] #Top 10 Songs by views
     except len(lista)==0:

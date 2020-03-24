@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'apps.spotify',
+    'social_django',
 ]
 
 MIDDLEWARE = [
@@ -119,3 +120,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+SOCIAL_AUTH_URL_NAMESPACE = 'social'

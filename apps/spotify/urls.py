@@ -1,6 +1,7 @@
 from django.urls import path, include
 from . import views
 from django.conf.urls import url
+from django.conf import settings
 
 app_name = 'spotify'
 urlpatterns = [

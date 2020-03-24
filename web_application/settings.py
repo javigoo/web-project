@@ -29,15 +29,17 @@ ALLOWED_HOSTS = ['*']
 
 #OAuth2
 
-SOCIAL_AUTH_SPOTIFY_KEY  =  '8ed1089a02664c5a82e1881d283a3031'
-SOCIAL_AUTH_SPOTIFY_SECRET  =   '3ec1a1bb1e3b496684569b51d12bdbda'
+SOCIAL_AUTH_SPOTIFY_KEY  =  '7eef2365850c490cad7869690e6a39b5'
+SOCIAL_AUTH_SPOTIFY_SECRET  =   '8cc09d9ba0144bbb89b1943bfd33e963'
 SOCIAL_AUTH_SPOTIFY_SCOPE = ['user-read-email', 'user-library-read']
+LOGIN_REDIRECT_URL = '/'
 
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
     'social_core.backends.spotify.SpotifyOAuth2',
 )
 
+SOCIAL_AUTH_URL_NAMESPACE = 'social'
 
 # Application definition
 

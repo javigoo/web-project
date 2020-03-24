@@ -17,8 +17,11 @@ from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.urls import path, include
 from django.conf import settings
+from django.conf.urls import url
 
 urlpatterns = [
+    
+    url('', include('social.apps.django_app.urls', namespace='social')),
     path('admin/', admin.site.urls),
     path('', include('apps.spotify.urls')),
 ]

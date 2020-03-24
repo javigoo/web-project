@@ -5,10 +5,10 @@ import requests
 
 # Create your views here.
 def home(request):
-    if request.user.is_authenticated:
+    #if request.user.is_authenticated:
         return render(request, 'spotify/home.html', {})
-    else:
-        return Http404
+    #else:
+    #    raise Http404
 
 def top_songs(request):
     try:

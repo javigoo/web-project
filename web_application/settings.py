@@ -129,5 +129,6 @@ SOCIAL_AUTH_SPOTIFY_KEY = '62ebad7e556c4837be353b3bbcda1c4f'    # Your Client ID
 SOCIAL_AUTH_SPOTIFY_SECRET = 'c72ef716d1e6489ea73d0c905527d9bc' # Your Client Secret
 
 AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
     'social_core.backends.spotify.SpotifyOAuth2',
 )

@@ -27,6 +27,18 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+#OAuth2
+
+SOCIAL_AUTH_SPOTIFY_KEY  =  '8ed1089a02664c5a82e1881d283a3031'
+SOCIAL_AUTH_SPOTIFY_SECRET  =   '3ec1a1bb1e3b496684569b51d12bdbda'
+SOCIAL_AUTH_SPOTIFY_SCOPE = ['user-read-email', 'user-library-read']
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'social_core.backends.spotify.SpotifyOAuth2',
+)
+
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -37,6 +49,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'apps.spotify',
+    'social.apps.django_app.default',
 ]
 
 MIDDLEWARE = [
@@ -63,6 +76,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social.apps.django_app.context_processors.backends',
+                'social.apps.django_app.context_processors.login_redirect',
             ],
         },
     },

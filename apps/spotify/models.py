@@ -31,13 +31,3 @@ class Playlist(models.Model):
     def __str__(self):
         return self.name
     
-
-class User(models.Model):
-
-    id = models.AutoField(primary_key=True)  # Django lo hace por defecto.
-    auth_url = models.CharField(max_length=200, default=None)
-    #access_token = models.CharField(max_length=200, default=None)
-    #refresh_token = models.CharField(max_length=200, default=None)
-
-    def __str__(self):
-        return str(self.id)

@@ -2,19 +2,20 @@
 
 {% load static %}
 
-<body>
-  <div>
-    {% block page_content %}
-        <p>En esta página aparecerán los apartados principales de la aplicación</p>
-        <li>
-          Información artistas
-        </li>
-        <li>
-          <a href="{% url 'spotify:topsongs' %}">Top 10 canciones</a> <!-- Apunta a la url con name: topsongs -->
-        </li>
-        <li>
-          Crear playlists
-        </li>
-    {% endblock %}
-  </div>
-</body>
+{% block page_content %}
+
+    <p>En esta página aparecerán los apartados principales de la aplicación</p>
+    <li>
+      Información artistas
+    </li>
+    <li>
+      <a href="{% url 'spotify:topsongs' %}">Top 10 canciones</a> <!-- Apunta a la url con name: topsongs -->
+    </li>
+    <li>
+      Crear playlists
+    </li>
+    <li>
+      <a href="{% url 'social:begin' 'spotify' %}">Testing log in</a>
+    </li>
+
+{% endblock %}

@@ -27,18 +27,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-#OAuth2
-
-SOCIAL_AUTH_SPOTIFY_KEY  =  '8ed1089a02664c5a82e1881d283a3031'
-SOCIAL_AUTH_SPOTIFY_SECRET  =   '3ec1a1bb1e3b496684569b51d12bdbda'
-SOCIAL_AUTH_SPOTIFY_SCOPE = ['user-read-email', 'user-library-read']
-
-AUTHENTICATION_BACKENDS = (
-    'django.contrib.auth.backends.ModelBackend',
-    'social_core.backends.spotify.SpotifyOAuth2',
-)
-
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -49,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'apps.spotify',
-    'social.apps.django_app.default',
+    'social_django',
 ]
 
 MIDDLEWARE = [
@@ -76,8 +64,6 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'social.apps.django_app.context_processors.backends',
-                'social.apps.django_app.context_processors.login_redirect',
             ],
         },
     },
@@ -134,3 +120,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# OAuth Spotify
+
+SOCIAL_AUTH_URL_NAMESPACE = 'social'
+
+SOCIAL_AUTH_SPOTIFY_KEY = '62ebad7e556c4837be353b3bbcda1c4f'    # Your Client ID
+SOCIAL_AUTH_SPOTIFY_SECRET = 'c72ef716d1e6489ea73d0c905527d9bc' # Your Client Secret
+
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.spotify.SpotifyOAuth2',
+)

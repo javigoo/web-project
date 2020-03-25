@@ -28,5 +28,4 @@ def profile(request):
     app_user.access_token = social.extra_data["access_token"]
     app_user.refresh_token = social.extra_data["refresh_token"]
     app_user.save()
-    return HttpResponse(app_user.name)
-    #return render(request, 'spotify/profile.html')
+    return render(request, 'spotify/profile.html', {'usuario':app_user})

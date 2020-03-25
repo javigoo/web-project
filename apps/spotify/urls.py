@@ -8,5 +8,6 @@ urlpatterns = [
     url('', include('social.apps.django_app.urls', namespace='social')),
 
     path('', views.home, name='home'),
+    path('accounts/profile/', views.profile, name='profile'),   # Muestra el perfil de Spotify del usuario registrado
     path('top/', views.top_songs, name='topsongs'),
 ]

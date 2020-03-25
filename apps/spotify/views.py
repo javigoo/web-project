@@ -16,3 +16,6 @@ def top_songs(request):
     except len(lista)==0:
         raise Http404("No tenemos canciones.")
     return render(request, 'spotify/topsongs.html', {'topsonglist':lista})
+
+def profile(request):
+    return render(request, 'spotify/profile.html')

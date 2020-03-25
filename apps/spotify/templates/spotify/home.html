@@ -4,15 +4,18 @@
 
 {% block page_content %}
 
-    <p>En esta página aparecerán los apartados principales de la aplicación</p>
+    <p>The main sections of the application will appear on this page</p>
     <li>
-      Información artistas
+      Information about artists
     </li>
     <li>
-      <a href="{% url 'spotify:topsongs' %}">Top 10 canciones</a> <!-- Apunta a la url con name: topsongs -->
+      <a href="{% url 'spotify:topsongs' %}">Top 10 songs</a> <!-- Apunta a la url con name: topsongs -->
     </li>
     <li>
-      Crear playlists
+      Create playlists
+    </li>
+    <li>
+      <a href="{% url 'admin:index' %}">Django administration</a> <!-- Apunta a la url de index -->
     </li>
 
 {% endblock %}

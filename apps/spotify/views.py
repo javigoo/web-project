@@ -2,6 +2,8 @@ from django.shortcuts import render, get_object_or_404
 from django.http import Http404, HttpResponse
 from apps.spotify.models import *
 from django.contrib.auth.models import User
+from django.contrib.auth import logout
+from django.shortcuts import redirect
 import requests
 
 # Create your views here.
@@ -29,3 +31,8 @@ def profile(request):
     app_user.refresh_token = social.extra_data["refresh_token"]
     app_user.save()
     return render(request, 'spotify/profile.html', {'usuario':app_user})
+
+def log_out(request):
+    logout(request)
+    # Redirect to a success page.
+    return render(request, 'spotify/logout.html', {})

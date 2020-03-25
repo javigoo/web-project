@@ -1,6 +1,6 @@
-# Project Title
+# Spotifly
 
-One Paragraph of project description goes here
+The topic of this project is about music. We will use the Spotify API to get information about the artists, to make a TOP 10 tracks and to create customized playlists.
 
 ## Getting Started
 
@@ -14,10 +14,6 @@ What things you need to install the software and how to install them
 ```
 sudo apt-get update
 sudo apt-get install python3
-```
-- Install pip for Python 3
-```
-sudo apt install python3-pip
 ```
 
 ### Installing
@@ -56,8 +52,6 @@ Check if the install worked successfully running it
 ```
 python3 manage.py runserver
 ```
-
-End with an example of getting some data out of the system or using it for a little demo
 
 ## Running the tests
 

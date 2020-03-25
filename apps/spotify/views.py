@@ -20,6 +20,13 @@ def top_songs(request):
         raise Http404("Error, lista vacia.")
     return render(request, 'spotify/topsongs.html', {'topsonglist':lista})
 
+def playlist_view(request):
+    try:
+        playlists = Playlist.objects.all()
+    except len(lista)==0:
+        raise Http404("Error, lista vacia.")
+    return render(request, 'spotify/playlists.html', {'playlist_list':playlists})
+
 def profile(request):
     django_user = request.user #Usuario de django.contrib.auth users
     social = django_user.social_auth.get(provider='spotify') # Usuario de social_django

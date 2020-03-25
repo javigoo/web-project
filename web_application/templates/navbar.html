@@ -7,16 +7,24 @@
   </button>
   <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
     <ul class="navbar-nav">
+
+    {% if user.is_authenticated %}
+
       <li class="nav-item">
-          {% if user.is_authenticated %}
         <a class="nav-link" href="{% url 'spotify:profile' %}">Logged as {{ user.username }}</a>
       </li>
       <li class="nav-item">
         <a class="btn btn-primary" href="{% url 'spotify:logout' %}">Log out</a>
-          {% else %}
-        <a class="btn btn-primary" href="{% url 'social:begin' 'spotify' %}">Sign in</a>
-          {% endif %}
       </li>
+
+    {% else %}
+
+      <li class="nav-item">
+        <a class="btn btn-primary" href="{% url 'social:begin' 'spotify' %}">Sign in</a>
+      </li>
+
+    {% endif %}
+
     </ul>
   </div>
 </nav>

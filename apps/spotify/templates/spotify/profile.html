@@ -4,10 +4,17 @@
 {% block page_content %}
 
     <h1>Profile</h1>
-    <p>We care about you, but we don't have anything done yet.</p>
+
     {% if user.is_authenticated %}
-    <li>Name: {{usuario.name}}</li>
-    <li>Access Token: {{usuario.access_token}}</li>
-    <li>Refresh Token: {{usuario.refresh_token}}</li>
+
+      <li>Name: {{usuario.name}}</li>
+      <li>Access Token: {{usuario.access_token}}</li>
+      <li>Refresh Token: {{usuario.refresh_token}}</li>
+
+    {% else %}
+
+      <p>We care about you, but we don't have anything done yet.</p>
+
     {% endif %}
+    
 {% endblock %}

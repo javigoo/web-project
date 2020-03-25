@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+
+  {% if playlist_list %}
+      <p> Playlists: </p>
+      {% for playlist in playlist_list %}
+          {{playlist.name}}
+      {% endfor %}
+  {% else %}
+      <p>No hay playlists. Podeis añadirlas desde admin.</p>
+  {% endif %}
+
+{% endblock %}

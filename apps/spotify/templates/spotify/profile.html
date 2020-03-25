@@ -5,5 +5,9 @@
 
     <h1>Profile</h1>
     <p>We care about you, but we don't have anything done yet.</p>
+    {% if user.is_authenticated %}
+    <li>Name: {{user.username}}</li>
+    <li>Extra Data: {{user.extra_data}}</li>
+    {% endif %}
 
 {% endblock %}

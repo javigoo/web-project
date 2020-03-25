@@ -32,8 +32,10 @@ class Playlist(models.Model):
         return self.name
 
 class Spotify_User(models.Model):
-    id = models.CharField(max_length=100, primary_key=True)
+    id = models.AutoField(primary_key=True) #Ya lo usa Django por defecto.
     name = models.CharField(max_length=30, null=True)
+    access_token = models.CharField(max_length=200, null=True)
+    refresh_token = models.CharField(max_length=200, null=True)
 
     playlists = models.ManyToManyField('Playlist', related_name='Spotify_User')
 

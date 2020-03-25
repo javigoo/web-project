@@ -19,8 +19,14 @@ def top_songs(request):
     return render(request, 'spotify/topsongs.html', {'topsonglist':lista})
 
 def profile(request):
-    user = request.user #Usuario de django users
-    social = user.social_auth.get(provider='spotify') #Usuario de social_django
-    token = social.extra_data["access_token"]
-    return HttpResponse(token)
+    django_user = request.user #Usuario de django.contrib.auth users
+    social = django_user.social_auth.get(provider='spotify') # Usuario de social_django
+    try:
+        app_user = Spotify_User.objects.get(name=social.uid) # Usuario de apps.spotify
+    except Spotify_User.DoesNotExist:
+        app_user = Spotify_User(name=social.uid)
+    app_user.access_token = social.extra_data["access_token"]
+    app_user.refresh_token = social.extra_data["refresh_token"]
+    app_user.save()
+    return HttpResponse(app_user.name)
     #return render(request, 'spotify/profile.html')

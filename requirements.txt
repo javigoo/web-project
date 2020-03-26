@@ -21,7 +21,6 @@ itsdangerous==1.1.0
 Jinja2==2.11.1
 MarkupSafe==1.1.1
 oauthlib==3.1.0
-pkg-resources==0.0.0
 psycopg2-binary==2.8.4
 PyJWT==1.7.1
 python-dateutil==2.4.2
@@ -37,4 +36,4 @@ tldextract==1.6
 unicodecsv==0.13.0
 urllib3==1.25.8
 Werkzeug==1.0.0
-whitenoise==5.0.1
+whitenoise==5.0.0

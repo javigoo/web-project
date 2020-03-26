@@ -17,10 +17,11 @@ def top_songs(request):
     return render(request, 'spotify/topsongs.html', {'topsonglist':lista})
 
 def playlist_view(request):
-    try:
+    user = Spotify_User.get_user(request)
+    if user is not None:
+        playlists = user.get_playlists()
+    else:
         playlists = Playlist.objects.all()
-    except len(lista)==0:
-        raise Http404("Error, lista vacia.")
     return render(request, 'spotify/playlists.html', {'playlist_list':playlists})
 
 def profile(request):

@@ -4,14 +4,10 @@ from apps.spotify.models import *
 from django.contrib.auth.models import User
 from django.contrib.auth import logout
 from django.shortcuts import redirect
-import requests
 
 # Create your views here.
 def home(request):
-    #if request.user.is_authenticated:
         return render(request, 'spotify/home.html', {})
-    #else:
-    #    raise Http404
 
 def top_songs(request):
     try:
@@ -28,15 +24,7 @@ def playlist_view(request):
     return render(request, 'spotify/playlists.html', {'playlist_list':playlists})
 
 def profile(request):
-    django_user = request.user #Usuario de django.contrib.auth users
-    social = django_user.social_auth.get(provider='spotify') # Usuario de social_django
-    try:
-        app_user = Spotify_User.objects.get(name=social.uid) # Usuario de apps.spotify
-    except Spotify_User.DoesNotExist:
-        app_user = Spotify_User(name=social.uid)
-    app_user.access_token = social.extra_data["access_token"]
-    app_user.refresh_token = social.extra_data["refresh_token"]
-    app_user.save()
+    app_user = Spotify_User.get_user(request)
     return render(request, 'spotify/profile.html', {'usuario':app_user})
 
 def log_out(request):

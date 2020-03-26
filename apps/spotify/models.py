@@ -1,5 +1,5 @@
 from django.db import models
-import requests
+import requests, json
 
 # Create your models here.
 
@@ -12,6 +12,10 @@ class Song(models.Model):
 
     def __str__(self):
         return self.name     # This allows us to see the name from the Django Admin interface
+    
+    @classmethod
+    def get_song(cls):
+        pass
 
 class Artist(models.Model):
     name = models.CharField(max_length=30, null=True)
@@ -22,46 +26,71 @@ class Artist(models.Model):
 
     def __str__(self):
         return self.name
+    
+    @classmethod
+    def get_artist(cls):
+        pass
 
 class Playlist(models.Model):
+    id = models.CharField(max_length=200, primary_key=True) # Es el id que tenga en Spotify
     name = models.CharField(max_length=30, null=True)
     duration = models.IntegerField(default=0, null=True)
 
-    song = models.ManyToManyField(Song)
+    songs = models.ManyToManyField(Song)
 
     def __str__(self):
         return self.name
 
+    @classmethod
+    def get_playlist(cls, id, name):
+        try:
+            playlist = cls.objects.get(id = id)
+        except cls.DoesNotExist:
+            playlist = cls( id=id)
+        playlist.name = name
+        playlist.save()
+        return playlist
+    
+    def get_songs(self):
+        pass
+
 class Spotify_User(models.Model):
-    id = models.AutoField(primary_key=True) #Ya lo usa Django por defecto.
-    name = models.CharField(max_length=30, null=True)
+    name = models.CharField(max_length=30, primary_key=True) # Spotify no tiene usuarios con el mismo nombre.
     access_token = models.CharField(max_length=200, null=True)
     refresh_token = models.CharField(max_length=200, null=True)
 
-    playlists = models.ManyToManyField('Playlist', related_name='Spotify_User')
+    playlists = models.ManyToManyField( Playlist, related_name='Spotify_User')
 
     def __str__(self):
         return self.name
 
     @classmethod
     def get_user(cls, request):     #Nos devuelve el usuario actual desde cualquier vista.
-        django_user = request.user #Usuario de django.contrib.auth users
-        social = django_user.social_auth.get(provider='spotify') # Usuario de social_django
-        try:
-            app_user = cls.objects.get(name=social.uid) # Usuario de apps.spotify
-        except cls.DoesNotExist:
-            app_user = Spotify_User(name=social.uid)
-        app_user.access_token = social.extra_data["access_token"]
-        app_user.refresh_token = social.extra_data["refresh_token"]
-        app_user.save()
-        return app_user
+        if request.user.is_authenticated:
+            django_user = request.user #Usuario de django.contrib.auth users
+            social = django_user.social_auth.get(provider='spotify') # Usuario de social_django
+            try:
+                app_user = cls.objects.get(name=social.uid) # Usuario de apps.spotify
+            except cls.DoesNotExist:
+                app_user = cls(name=social.uid)
+            app_user.access_token = social.extra_data["access_token"]
+            app_user.refresh_token = social.extra_data["refresh_token"]
+            app_user.save()
+            return app_user
+        else:
+            return None
     
-    """def get_playlist(self):    #Get a List of a User's Playlists 
+    def get_playlists(self):    #Get a List of a User's Playlists 
         response = requests.get(
-            'https://api.spotify.com/v1/users/'+self.name+'/playlists',
+            'https://api.spotify.com/v1/me/playlists?limit=10&offset=5',
             params={'access_token': self.access_token}
         )
-        playlists = response.json()['items']
-        self.playlists.set() = playlists{'traks'}
-        user.save()
-"""
+        playlists = response.json()[0]["items"] # Array de diccionarios de cada playlist
+        #self.playlists.purgue()
+        for playlist_json in playlists:
+            id = playlist_json['id']
+            name = playlist_json['name']
+            playlist = Playlist.get_playlist( id=id, name=name)
+            self.playlists.add(playlist)
+        self.save()
+        return self.playlists

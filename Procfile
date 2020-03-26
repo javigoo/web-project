@@ -1,1 +1,1 @@
-web: gunicorn spotifly.wsgi
+web: gunicorn web_application.wsgi

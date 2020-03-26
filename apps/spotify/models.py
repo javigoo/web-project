@@ -1,5 +1,6 @@
 from django.db import models
 import requests
+from social_django.utils import load_strategy
 
 # Create your models here.
 
@@ -66,19 +67,20 @@ class Spotify_User(models.Model):
 
     @classmethod
     def get_user(cls, request):     #Nos devuelve el usuario actual desde cualquier vista.
-        if request.user.is_authenticated:
+        try:
             django_user = request.user #Usuario de django.contrib.auth users
             social = django_user.social_auth.get(provider='spotify') # Usuario de social_django
             try:
                 app_user = cls.objects.get(name=social.uid) # Usuario de apps.spotify
             except cls.DoesNotExist:
                 app_user = cls(name=social.uid)
-            app_user.access_token = social.extra_data["access_token"]
+            
+            app_user.access_token = social.get_access_token(load_strategy()) # En caso de ser necesario, actualiza el access token
             app_user.refresh_token = social.extra_data["refresh_token"]
             app_user.save()
             return app_user
-        else:
-            return None
+        except not request.user.is_authenticated:
+            exit()
     
     def get_playlists(self):    #Get a List of a User's Playlists 
         response = requests.get(

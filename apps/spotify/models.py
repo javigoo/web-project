@@ -1,5 +1,5 @@
 from django.db import models
-import requests, json
+import requests
 
 # Create your models here.
 
@@ -82,10 +82,12 @@ class Spotify_User(models.Model):
     
     def get_playlists(self):    #Get a List of a User's Playlists 
         response = requests.get(
-            'https://api.spotify.com/v1/me/playlists?limit=10&offset=5',
+            'https://api.spotify.com/v1/me/playlists',
             params={'access_token': self.access_token}
         )
-        playlists = response.json()[0]["items"] # Array de diccionarios de cada playlist
+        if response.status_code != 200:
+            exit()
+        playlists = response.json()["items"] # Array de diccionarios de cada playlist
         #self.playlists.purgue()
         for playlist_json in playlists:
             id = playlist_json['id']

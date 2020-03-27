@@ -18,11 +18,9 @@ def top_songs(request):
 
 def playlist_view(request):
     user = Spotify_User.get_user(request)
-    if user is not None:
-        playlists = user.get_playlists()
-    else:
-        playlists = Playlist.objects.all()
+    playlists = user.get_playlists()
     return render(request, 'spotify/playlists.html', {'playlist_list':playlists})
+    
 
 def profile(request):
     app_user = Spotify_User.get_user(request)

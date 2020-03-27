@@ -1,7 +1,6 @@
 from django.db import models
 import requests
 from social_django.utils import load_strategy
-
 # Create your models here.
 
 
@@ -55,30 +54,13 @@ class Spotify_User(models.Model):
             return app_user
         else :
             exit()
-    
-    def get_playlists(self):    #Get a List of a User's Playlists 
-        response = requests.get(
-            'https://api.spotify.com/v1/me/playlists',
-            params={'access_token': self.access_token}
-        )
-        if response.status_code != 200:
-            exit()
-        playlists = response.json()["items"] # Array de diccionarios de cada playlist
-        #self.playlists.purgue()
-        for playlist_json in playlists:
-            id = playlist_json['id']
-            name = playlist_json['name']
-            playlist = Playlist.get_playlist( id=id, name=name)
-            self.playlists.add(playlist)
-        self.save()
-        return self.playlists
 
 class Playlist(models.Model):
     id = models.CharField(max_length=200, primary_key=True) # Es el id que tenga en Spotify
     name = models.CharField(max_length=30, null=True)
     duration = models.IntegerField(default=0, null=True)
 
-    user = models.ForeignKey(Spotify_User, null=False,
+    user = models.ForeignKey(Spotify_User, null=True,
                                 on_delete=models.CASCADE)
 
     songs = models.ManyToManyField(Song)
@@ -86,15 +68,33 @@ class Playlist(models.Model):
     def __str__(self):
         return self.name
 
+    def get_songs(self):
+            pass
+
     @classmethod
-    def get_playlist(cls, id, name):
+    def get_playlist(cls, id, name, user):
         try:
             playlist = cls.objects.get(id = id)
         except cls.DoesNotExist:
             playlist = cls( id=id)
         playlist.name = name
+        playlist.user = user
         playlist.save()
         return playlist
     
-    def get_songs(self):
-        pass
+    @classmethod
+    def get_playlists( cls, user):    #Get a List of a User's Playlists 
+        response = requests.get(
+            'https://api.spotify.com/v1/me/playlists',
+            params={'access_token': user.access_token}
+        )
+        if response.status_code != 200:
+            exit()
+        playlists = response.json()["items"] # Array de diccionarios de cada playlist
+        #elimina las playlist que no aparecen.
+        playlists = []
+        for playlist_json in playlists:
+            id = playlist_json['id']
+            name = playlist_json['name']
+            playlists.append(cls.get_playlist( id=id, name=name, user=user))
+        return playlists

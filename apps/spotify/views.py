@@ -18,7 +18,7 @@ def top_songs(request):
 
 def playlist_view(request):
     user = Spotify_User.get_user(request)
-    playlists = user.get_playlists()
+    playlists = Playlist.get_playlists(user)
     return render(request, 'spotify/playlists.html', {'playlist_list':playlists})
     
 

@@ -90,11 +90,11 @@ class Playlist(models.Model):
         )
         if response.status_code != 200:
             exit()
-        playlists = response.json()["items"] # Array de diccionarios de cada playlist
+        playlists_dict = response.json()["items"] # Array de diccionarios de cada playlist
         #elimina las playlist que no aparecen.
-        playlists = []
-        for playlist_json in playlists:
+        playlists_list = []
+        for playlist_json in playlists_dict:
             id = playlist_json['id']
             name = playlist_json['name']
-            playlists.append(cls.get_playlist( id=id, name=name, user=user))
-        return playlists
+            playlists_list.append(cls.get_playlist( id=id, name=name, user=user))
+        return playlists_list

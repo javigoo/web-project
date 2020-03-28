@@ -5,7 +5,7 @@
 {% block page_content %}
     <p> The main sections of the application will appear on this page </p>
     <li>
-      <a href="#"> Information about artists </a>
+      <a href="{% url 'spotify:artist' %}"> Information about artists </a>
     </li>
     <li>
       <a href="{% url 'spotify:topsongs' %}"> Top 10 songs </a> <!-- Apunta a la url con name: topsongs -->

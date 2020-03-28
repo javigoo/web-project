@@ -20,7 +20,6 @@ def playlist_view(request):
     user = Spotify_User.get_user(request)
     playlists = Playlist.get_playlists(user)
     return render(request, 'spotify/playlists.html', {'playlist_list':playlists})
-    
 
 def profile(request):
     app_user = Spotify_User.get_user(request)
@@ -35,3 +34,10 @@ def infplaylist(request, playlist_id):
     playlist = Playlist.objects.get(id=playlist_id)
     songs = playlist.get_songs()
     return render(request, 'spotify/infoplaylist.html', {'song_list':songs, 'playlist':playlist.name})
+
+def artist_view(request):
+    try:
+        artists = Artist.objects.all() #Top 10 Songs by views
+    except len(artists)==0:
+        raise Http404("Error, no hay información sobre artistas disponible.")
+    return render(request, 'spotify/artists.html', {'artistlist':artists})

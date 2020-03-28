@@ -5,30 +5,52 @@ from social_django.utils import load_strategy
 
 
 class Artist(models.Model):
+    id = models.CharField(max_length=200, primary_key=True) # Es el id que tenga en Spotify
     name = models.CharField(max_length=30, null=True)
-    views = models.IntegerField(default=0, null=True)
+    rate = models.IntegerField(default=0, null=True)
     information = models.CharField(default='No Artist Information', max_length=200, null=True)
 
     def __str__(self):
         return self.name
     
     @classmethod
-    def get_artist(cls):
-        pass
+    def get_artist(cls, id, name):
+        try:
+            artist = cls.objects.get(id = id)
+        except cls.DoesNotExist:
+            artist = cls( id=id)
+        artist.id = id
+        artist.name = name
+        artist.save()
+        return artist
 
 class Song(models.Model):
+    id = models.CharField(max_length=200, primary_key=True) # Es el id que tenga en Spotify
     name = models.CharField(max_length=30, null=True)
-    views = models.IntegerField(default=0, null=True)
+    rate = models.IntegerField(default=0, null=True)
     date = models.DateTimeField('Publication date', null=True)
-    artist = models.ForeignKey( Artist, null=True,
-                                 on_delete=models.CASCADE) # Eliminar un artista significa tmb eliminar toda su musica.
+    artist = models.ManyToManyField( Artist)
 
     def __str__(self):
         return self.name     # This allows us to see the name from the Django Admin interface
     
+    def get_artists(self, artists):
+        for artist in artists:
+            id = artist['id']
+            name = artist['name']
+            Artist.get_artist( id=id, name=name)
+
     @classmethod
-    def get_song(cls):
-        pass
+    def get_song(cls, artists, id, name, rate):
+        try:
+            song = cls.objects.get(id = id)
+        except cls.DoesNotExist:
+            song = cls( id=id)
+        song.name = name
+        song.rate = rate
+        song.save()
+        song.get_artists(artists=artists)
+        return song
 
 class Spotify_User(models.Model):
     name = models.CharField(max_length=30, primary_key=True) # Spotify no tiene usuarios con el mismo nombre.
@@ -68,9 +90,6 @@ class Playlist(models.Model):
     def __str__(self):
         return self.name
 
-    def get_songs(self):
-            pass
-
     @classmethod
     def get_playlist(cls, id, name, user):
         try:
@@ -98,3 +117,22 @@ class Playlist(models.Model):
             name = playlist_json['name']
             playlists_list.append(cls.get_playlist( id=id, name=name, user=user))
         return playlists_list
+    
+    def get_songs(self):
+        response = requests.get(
+            'https://api.spotify.com/v1/playlists/'+self.id+'/tracks',
+            params={'access_token': self.user.access_token}
+        )
+        if response.status_code != 200:
+            exit()
+        songs_dict = response.json()['items']
+        songs_list = []
+        for song_json in songs_dict:
+            id = song_json['track']['id']
+            artists = song_json['track']['artists']
+            name = song_json['track']['name']
+            rate = song_json['track']['popularity']
+            song = Song.get_song(id=id, artists=artists, name=name, rate=rate)
+            self.songs.add(song)
+            songs_list.append(song)
+        return songs_list

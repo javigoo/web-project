@@ -4,7 +4,7 @@
         {% if playlist_list %}
             <p> Playlists: </p>
             {% for playlist in playlist_list %}
-                {{playlist.name}}
+                <a href="{% url 'spotify:infoplaylist' playlist_id=playlist.id %}">{{playlist.name}}</a>
             {% endfor %}
         {% else %}
             <p>No hay playlist. Podeis añadirlas desde admin o logeandote.</p>

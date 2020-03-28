@@ -10,4 +10,5 @@ urlpatterns = [
     path('logout/', views.log_out, name='logout'),
     path('top/', views.top_songs, name='topsongs'),
     path('playlist/', views.playlist_view, name='playlist'),
+    path('playlist\\/(?P<playlist_id>[0-9]+)$', views.infplaylist, name='infoplaylist'),
 ]

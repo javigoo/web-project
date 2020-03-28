@@ -32,11 +32,6 @@ python3 -m venv venv
 source venv/bin/activate
 ```
 
-We can deactivate it typing:
-```
-deactivate
-```
-
 “requirements.txt” is a file containing a list of items to be installed using pip
 install like so:
 ```
@@ -51,6 +46,11 @@ python3 manage.py migrate
 Check if the install worked successfully running it
 ```
 python3 manage.py runserver
+```
+
+We can deactivate the virtual environment typing:
+```
+deactivate
 ```
 
 ## Running the tests

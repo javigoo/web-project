@@ -1,6 +1,10 @@
 
-# Created by https://www.gitignore.io/api/venv,django,python
-# Edit at https://www.gitignore.io/?templates=venv,django,python
+# Created by https://www.gitignore.io/api/venv,django,python,visualstudiocode
+# Edit at https://www.gitignore.io/?templates=venv,django,python,visualstudiocode
+
+
+# db.sqlite3  Commented to share database
+
 
 ### Django ###
 *.log
@@ -8,9 +12,6 @@
 *.pyc
 __pycache__/
 local_settings.py
-
-db.sqlite3
-
 db.sqlite3-journal
 media
 
@@ -181,4 +182,15 @@ env.bak/
 venv.bak/
 pip-selfcheck.json
 
-# End of https://www.gitignore.io/api/venv,django,python
+### VisualStudioCode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+### VisualStudioCode Patch ###
+# Ignore all local history of files
+.history
+
+# End of https://www.gitignore.io/api/venv,django,python,visualstudiocode

@@ -3,9 +3,9 @@
 {% block page_content %}
 
   {% if artistlist %}
-      <h1> Artists </h1>
+    <h1> Artists </h1>
       {% for artist in artistlist %}
-          <p> {{artist.name}}: {{artist.information}} </p>
+        <p> {{artist.name}}: {{artist.information}} </p>
       {% endfor %}
   {% else %}
       <p>No hay información sobre artistas disponible. Podeis añadirla desde admin.</p>

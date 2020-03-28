@@ -3,9 +3,9 @@
 {% block page_content %}
 
   {% if topsonglist %}
-      <p> Top Songs </p>
+    <h1> Top Songs </h1>
       {% for song in topsonglist %}
-          {{song.name}}
+        <p> {{song.name}} - {{song.rate}}</p>
       {% endfor %}
   {% else %}
       <p>No hay canciones. Podeis añadirlas desde admin.</p>

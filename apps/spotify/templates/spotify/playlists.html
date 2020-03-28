@@ -1,12 +1,14 @@
 {% extends "base.html" %}
 
 {% block page_content %}
-        {% if playlist_list %}
-            <p> Playlists: </p>
-            {% for playlist in playlist_list %}
-                <a href="{% url 'spotify:infoplaylist' playlist_id=playlist.id %}">{{playlist.name}}</a>
-            {% endfor %}
-        {% else %}
-            <p>No hay playlist. Podeis añadirlas desde admin o logeandote.</p>
-        {% endif %}
+
+  {% if playlist_list %}
+    <p> Playlists: </p>
+      {% for playlist in playlist_list %}
+        <a href="{% url 'spotify:infoplaylist' playlist_id=playlist.id %}">{{playlist.name}}</a>
+      {% endfor %}
+  {% else %}
+    <p>No hay playlist. Podeis añadirlas desde admin o logeandote.</p>
+  {% endif %}
+  
 {% endblock %}

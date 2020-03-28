@@ -73,11 +73,14 @@ Give an example
 
 ## Deployment
 
-Add additional notes about how to deploy this on a live system
+Spotifly is deployed automatically on the master branch. It is available on Heroku, you can check it [here](https://spotiflyyy.herokuapp.com/).
+
+To review the deployment settings in Heroku and Spotify for Developers contact us via [email](mailto:spotiflywebproject@gmail.com).
 
 ## Built With
 
-* [Django](https://www.djangoproject.com/) - The web framework used
+* [Django](https://www.djangoproject.com/) - Web framework
+* [Heroku](https://dashboard.heroku.com/) - Deploy platform
 
 ## Contributing
 
@@ -90,6 +93,8 @@ Make sure everything works perfectly, for this you can run the server and see th
 ```
 python3 manage.py runserver
 ```
+
+Finally make the pull request
 
 ## Authors
 

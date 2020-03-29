@@ -30,7 +30,7 @@ def log_out(request):
     # Redirect to a success page.
     return render(request, 'spotify/logout.html', {})
 
-def infplaylist(request, playlist_id):
+def infoplaylist(request, playlist_id):
     playlist = Playlist.objects.get(id=playlist_id)
     songs = playlist.get_songs()
     return render(request, 'spotify/infoplaylist.html', {'song_list':songs, 'playlist':playlist.name})

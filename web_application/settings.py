@@ -122,11 +122,12 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # OAuth Spotify
+# Keys only available during production and for correction (1ST ASSIGNMENT)
 
 SOCIAL_AUTH_URL_NAMESPACE = 'social'
 
-SOCIAL_AUTH_SPOTIFY_KEY = 'df0bda36584649a796f98c7da51fa410'    # Your Client ID
-SOCIAL_AUTH_SPOTIFY_SECRET = '8780f0ab287b4790b98bcf7d62aeb7ee' # Your Client Secret
+SOCIAL_AUTH_SPOTIFY_KEY = 'df0bda36584649a796f98c7da51fa410'    # Client ID
+SOCIAL_AUTH_SPOTIFY_SECRET = '8780f0ab287b4790b98bcf7d62aeb7ee' # Client Secret
 
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',

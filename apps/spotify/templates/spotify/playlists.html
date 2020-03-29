@@ -3,12 +3,12 @@
 {% block page_content %}
 
   {% if playlist_list %}
-    <p> Playlists: </p>
+    <h1> Playlists: </h1>
       {% for playlist in playlist_list %}
-        <a href="{% url 'spotify:infoplaylist' playlist_id=playlist.id %}">{{playlist.name}}</a>
+        <p>  <a href="{% url 'spotify:infoplaylist' playlist_id=playlist.id %}">{{playlist.name}}</a> </p>
       {% endfor %}
   {% else %}
-    <p>No hay playlist. Podeis añadirlas desde admin o logeandote.</p>
+    <p> There is no playlist. You you can add them from admin or logging. </p>
   {% endif %}
-  
+
 {% endblock %}

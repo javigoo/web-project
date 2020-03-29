@@ -63,7 +63,7 @@ The tests are also performed automatically with each commit.
 
 ## Deployment
 
-Spotifly is deployed automatically on the master branch. It is available on Heroku, you can check it [here](https://spotiflyyy.herokuapp.com/).
+Spotifly is deployed automatically on the first-assignment branch. It is available on Heroku, you can check it [here](https://spotiflyyy.herokuapp.com/).
 
 To review the deployment settings in Heroku and Spotify for Developers contact us via [email](mailto:spotiflywebproject@gmail.com).
 

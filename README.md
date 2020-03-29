@@ -55,21 +55,11 @@ deactivate
 
 ## Running the tests
 
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
+To run the automated tests for this system use:
 ```
-Give an example
+python3 manage.py test apps
 ```
-
-### And coding style tests
-
-Explain what these tests test and why
-```
-Give an example
-```
+The tests are also performed automatically with each commit.
 
 ## Deployment
 

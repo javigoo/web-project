@@ -97,3 +97,11 @@ Finally make the pull request
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+
+## First assignment
+
+In order to delete, modify and create new instances from the Django administration application, log in with:
+```
+Username: admin
+Password: admin
+```

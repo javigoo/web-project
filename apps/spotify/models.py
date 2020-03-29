@@ -5,14 +5,14 @@ from social_django.utils import load_strategy
 
 
 class Artist(models.Model):
-    id = models.CharField(max_length=200, primary_key=True) # Es el id que tenga en Spotify
+    id = models.CharField(max_length=200, primary_key=True) # Spotify id
     name = models.CharField(max_length=30, null=True)
     rate = models.IntegerField(default=0, null=True)
     information = models.CharField(default='No Artist Information', max_length=200, null=True)
 
     def __str__(self):
         return self.name
-    
+
     @classmethod
     def get_artist(cls, id, name):
         try:
@@ -25,15 +25,15 @@ class Artist(models.Model):
         return artist
 
 class Song(models.Model):
-    id = models.CharField(max_length=200, primary_key=True) # Es el id que tenga en Spotify
+    id = models.CharField(max_length=200, primary_key=True) # Spotify id
     name = models.CharField(max_length=30, null=True)
     rate = models.IntegerField(default=0, null=True)
     date = models.DateTimeField('Publication date', null=True)
     artist = models.ManyToManyField( Artist)
 
     def __str__(self):
-        return self.name     # This allows us to see the name from the Django Admin interface
-    
+        return self.name    # This allows us to see the name from the Django Admin interface
+
     def get_artists(self, artists):
         for artist in artists:
             id = artist['id']
@@ -53,7 +53,7 @@ class Song(models.Model):
         return song
 
 class Spotify_User(models.Model):
-    name = models.CharField(max_length=30, primary_key=True) # Spotify no tiene usuarios con el mismo nombre.
+    name = models.CharField(max_length=30, primary_key=True) # Primary key because Spotify has no members with the same name.
     access_token = models.CharField(max_length=200, null=True)
     refresh_token = models.CharField(max_length=200, null=True)
 
@@ -61,16 +61,16 @@ class Spotify_User(models.Model):
         return self.name
 
     @classmethod
-    def get_user(cls, request):     #Nos devuelve el usuario actual desde cualquier vista.
+    def get_user(cls, request): # Returns the current user from any view.
         if request.user.is_authenticated:
-            django_user = request.user #Usuario de django.contrib.auth users
-            social = django_user.social_auth.get(provider='spotify') # Usuario de social_django
+            django_user = request.user  # Django.contrib.auth users
+            social = django_user.social_auth.get(provider='spotify')    # User of social_django
             try:
-                app_user = cls.objects.get(name=social.uid) # Usuario de apps.spotify
+                app_user = cls.objects.get(name=social.uid) # Apps.spotify user
             except cls.DoesNotExist:
                 app_user = cls(name=social.uid)
-            
-            app_user.access_token = social.get_access_token(load_strategy()) # En caso de ser necesario, actualiza el access token
+
+            app_user.access_token = social.get_access_token(load_strategy()) # If necessary, the access token is updated
             app_user.refresh_token = social.extra_data["refresh_token"]
             app_user.save()
             return app_user
@@ -78,7 +78,7 @@ class Spotify_User(models.Model):
             exit()
 
 class Playlist(models.Model):
-    id = models.CharField(max_length=200, primary_key=True) # Es el id que tenga en Spotify
+    id = models.CharField(max_length=200, primary_key=True) # Spotify id
     name = models.CharField(max_length=30, null=True)
     duration = models.IntegerField(default=0, null=True)
 
@@ -100,24 +100,23 @@ class Playlist(models.Model):
         playlist.user = user
         playlist.save()
         return playlist
-    
+
     @classmethod
-    def get_playlists( cls, user):    #Get a List of a User's Playlists 
+    def get_playlists( cls, user):  # Get a List of a User's Playlists
         response = requests.get(
             'https://api.spotify.com/v1/me/playlists',
             params={'access_token': user.access_token}
         )
         if response.status_code != 200:
             exit()
-        playlists_dict = response.json()["items"] # Array de diccionarios de cada playlist
-        #elimina las playlist que no aparecen.
-        playlists_list = []
+        playlists_dict = response.json()["items"]   # Array of dictionaries for each playlist
+        playlists_list = [] # Remove playlists that do not appear.
         for playlist_json in playlists_dict:
             id = playlist_json['id']
             name = playlist_json['name']
             playlists_list.append(cls.get_playlist( id=id, name=name, user=user))
         return playlists_list
-    
+
     def get_songs(self):
         response = requests.get(
             'https://api.spotify.com/v1/playlists/'+self.id+'/tracks',

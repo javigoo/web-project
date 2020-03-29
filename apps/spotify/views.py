@@ -11,10 +11,10 @@ def home(request):
 
 def top_songs(request):
     try:
-        lista = Song.objects.order_by('rate').reverse()[:10] #Top 10 Songs by views
-    except len(lista)==0:
-        raise Http404("Error, lista vacia.")
-    return render(request, 'spotify/topsongs.html', {'topsonglist':lista})
+        top = Song.objects.order_by('rate').reverse()[:10]  # Top 10 songs by views (rate)
+    except len(top)==0:
+        raise Http404("Error, there are no songs available.")
+    return render(request, 'spotify/topsongs.html', {'topsonglist':top})
 
 def playlist_view(request):
     user = Spotify_User.get_user(request)
@@ -27,8 +27,7 @@ def profile(request):
 
 def log_out(request):
     logout(request)
-    # Redirect to a success page.
-    return render(request, 'spotify/logout.html', {})
+    return render(request, 'spotify/logout.html', {})   # Redirect to a success page.
 
 def infoplaylist(request, playlist_id):
     playlist = Playlist.objects.get(id=playlist_id)
@@ -37,7 +36,7 @@ def infoplaylist(request, playlist_id):
 
 def artist_view(request):
     try:
-        artists = Artist.objects.all() #Top 10 Songs by views
+        artists = Artist.objects.all()
     except len(artists)==0:
-        raise Http404("Error, no hay información sobre artistas disponible.")
+        raise Http404("Error, no artist information available.")
     return render(request, 'spotify/artists.html', {'artistlist':artists})

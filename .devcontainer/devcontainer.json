@@ -2,7 +2,7 @@
 // https://github.com/microsoft/vscode-dev-containers/tree/v0.113.0/containers/docker-existing-docker-compose
 // If you want to run as a non-root user in the container, see .devcontainer/docker-compose.yml.
 {
-	"name": "DjangoCompose",
+	"name": "Django",
 
 	// Update the 'dockerComposeFile' list if you have more compose files or use different names.
 	// The .devcontainer/docker-compose.yml file contains any overrides you need/want to make.
@@ -20,7 +20,12 @@
 
 	// Set *default* container specific settings.json values on container create.
 	"settings": { 
-		"terminal.integrated.shell.linux": null
+		"terminal.integrated.shell.linux": "/bin/bash",
+		"python.linting.enabled": true,
+		"python.linting.pylintEnabled": false,
+		"python.linting.pep8Enabled": true,
+		"python.linting.pep8Path": "/usr/local/bin/pep8"
+
 	},
 
 	// Add the IDs of extensions you want installed when the container is created.

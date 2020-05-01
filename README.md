@@ -1,34 +1,33 @@
 ## Things to correct
 
-- 12factor guidelines
-```
-A.2. Some commits have an unclear name.
-B.1. Not all dependencies in the requirements.txt file have been defined using: dep-name>=ma.mi.pa,<ma.mi.pa.
-B.2. Not all config variables have been defined as a environment variable.
-~~ C.1. There is no a proper development branch in the repository. ~~
-```
+### 12factor guidelines
 
-- TravisCI
-```
-B.1. Deploy specification is not declared.
-```
+- [ ] A.2. Some commits have an unclear name.
+- [ ] B.1. Not all dependencies in the requirements.txt file have been defined using: dep-name>=ma.mi.pa,<ma.mi.pa.
+- [ ] B.2. Not all config variables have been defined as a environment variable.
+- [x] C.1. There is no a proper development branch in the repository.
 
-- Docker container
-```
-A.2. Not added a runner user as a security countermeasure.
-A.3. Some great (but not mandatory) specifications are missing in the docker-compose.yml file like container_name, restart behavior, etc.
-B.1. Some configuration in the docker-compose.yml file has not been setted using environment variables when was possible.
-```
+### TravisCI
 
-- Heroku
-```
-B.1. Not used gunicorn as a web server for production.
-```
+- [ ] B.1. Deploy specification is not declared.
 
-- Observations
-```
-You should separte models definitions from API queries.
-```
+
+### Docker container
+
+- [ ] A.2. Not added a runner user as a security countermeasure.
+- [ ] A.3. Some great (but not mandatory) specifications are missing in the docker-compose.yml file like container_name, restart behavior, etc.
+- [ ] B.1. Some configuration in the docker-compose.yml file has not been setted using environment variables when was possible.
+
+
+### Heroku
+
+- [ ] B.1. Not used gunicorn as a web server for production.
+
+
+### Observations
+
+- [ ] You should separte models definitions from API queries.
+
 
 # Spotifly
 

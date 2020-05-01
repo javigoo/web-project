@@ -5,7 +5,7 @@
 A.2. Some commits have an unclear name.
 B.1. Not all dependencies in the requirements.txt file have been defined using: dep-name>=ma.mi.pa,<ma.mi.pa.
 B.2. Not all config variables have been defined as a environment variable.
-C.1. There is no a proper development branch in the repository.
+~~ C.1. There is no a proper development branch in the repository. ~~
 ```
 
 - TravisCI

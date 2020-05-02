@@ -1,9 +1,9 @@
 from django.test import TestCase
-from apps.spotify.models import *
 
 # Create your tests here.
 
 print("############# test #############")
+
 
 class TestingTestCase(TestCase):
     print("############# class #############")
@@ -15,6 +15,7 @@ class TestingTestCase(TestCase):
     def true_test(self):
         print("############# true_test #############")
         self.assertEqual(one, 1)
+
 
 """
 class PlaylistTest(TestCase):

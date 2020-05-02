@@ -1,16 +1,17 @@
-from django.urls import path, include
-from . import views
 from django.conf.urls import url
-from django.conf import settings
+from django.urls import path, include
 from rest_framework import routers
+
+from . import views
 
 router = routers.DefaultRouter()
 router.register(r'users', views.UserViewSet)
 
 app_name = 'spotify'
 urlpatterns = [
-    path('', views.home, name='home'),  # Main page where the user can log in or consult the different functionalities of the application
-    path('accounts/profile/', views.profile, name='profile'),   # Displays the Spotify profile of the registered user
+    path('', views.home, name='home'),
+    # Main page where the user can log in or consult the different functionalities of the application
+    path('accounts/profile/', views.profile, name='profile'),  # Displays the Spotify profile of the registered user
     path('logout/', views.log_out, name='logout'),
     path('top/', views.top_songs, name='topsongs'),
     path('playlist/', views.playlist_view, name='playlist'),

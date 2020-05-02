@@ -2,13 +2,13 @@
 
 {% block page_content %}
 
-  {% if topsonglist %}
-    <h1> Top Songs </h1>
-      {% for song in topsonglist %}
-        <p> {{song.name}} - {{song.rate}}</p>
-      {% endfor %}
-  {% else %}
-      <p> There are no songs. You can add them from admin. </p>
-  {% endif %}
+    {% if topsonglist %}
+        <h1> Top Songs </h1>
+        {% for song in topsonglist %}
+            <p> {{ song.name }} - {{ song.rate }}</p>
+        {% endfor %}
+    {% else %}
+        <p> There are no songs. You can add them from admin. </p>
+    {% endif %}
 
 {% endblock %}

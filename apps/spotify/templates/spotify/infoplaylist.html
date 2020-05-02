@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 
 {% block page_content %}
-        {% if song_list %}
-            <p> Songs of {{playlist}}: </p>
-            {% for song in song_list %}
-                <li>{{song.name}}</li>
-            {% endfor %}
-        {% else %}
-            <p> There are no songs. You you can add them from admin or logging. </p>
-        {% endif %}
+    {% if song_list %}
+        <p> Songs of {{ playlist }}: </p>
+        {% for song in song_list %}
+            <li>{{ song.name }}</li>
+        {% endfor %}
+    {% else %}
+        <p> There are no songs. You you can add them from admin or logging. </p>
+    {% endif %}
 {% endblock %}

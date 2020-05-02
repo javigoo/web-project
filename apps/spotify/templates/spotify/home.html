@@ -5,18 +5,18 @@
 {% block page_content %}
     <p> The main sections of the application will appear on this page </p>
     <li>
-      <a href="{% url 'spotify:artist' %}"> Information about artists </a>
+        <a href="{% url 'spotify:artist' %}"> Information about artists </a>
     </li>
     <li>
-      <a href="{% url 'spotify:topsongs' %}"> Top 10 songs </a> <!-- Apunta a la url con name: topsongs -->
+        <a href="{% url 'spotify:topsongs' %}"> Top 10 songs </a> <!-- Apunta a la url con name: topsongs -->
     </li>
-     {% if user.is_authenticated %}
-      <li>
-        <a href="{% url 'spotify:playlist' %}"> See playlists </a>
-      </li>
+    {% if user.is_authenticated %}
+        <li>
+            <a href="{% url 'spotify:playlist' %}"> See playlists </a>
+        </li>
     {% endif %}
     <li>
-      <a href="{% url 'admin:index' %}"> Django administration </a> <!-- Apunta a la url de index -->
+        <a href="{% url 'admin:index' %}"> Django administration </a> <!-- Apunta a la url de index -->
     </li>
 
 {% endblock %}

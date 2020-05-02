@@ -7,3 +7,5 @@ services:
                                                       # pero para poder usar OAuth2 entraremos con 127.0.0.1: .
     ports:
       - "8000:8000"
+    volumes:
+      - ./:/django

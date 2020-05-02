@@ -1,10 +1,8 @@
 FROM python:3.7
 ENV PYTHONUNBUFFERED 1
 
-RUN mkdir /code
-WORKDIR /code
+RUN mkdir /django
+WORKDIR /django
 
-COPY requirements.txt /code/
+COPY requirements.txt /django/
 RUN pip install -r requirements.txt
-
-COPY . /code/

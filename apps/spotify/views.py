@@ -22,13 +22,13 @@ def top_songs(request):
 
 
 def playlist_view(request):
-    user = Spotify_User.get_user(request)
+    user = get_user(request)
     playlists = Playlist.get_playlists(user)
     return render(request, 'spotify/playlists.html', {'playlist_list': playlists})
 
 
 def profile(request):
-    app_user = Spotify_User.get_user(request)
+    app_user = get_user(request)
     return render(request, 'spotify/profile.html', {'usuario': app_user})
 
 
@@ -57,3 +57,24 @@ class UserViewSet(viewsets.ModelViewSet):
     """
     queryset = User.objects.all().order_by('-date_joined')
     serializer_class = UserSerializer
+
+
+# API Queries
+
+
+def get_user(request):  # Returns the current user from any view.
+    if request.user.is_authenticated:
+        django_user = request.user  # Django.contrib.auth users
+        social = django_user.social_auth.get(provider='spotify')  # User of social_django
+        try:
+            app_user = Spotify_User.objects.get(name=social.uid)  # Apps.spotify user
+        except Spotify_User.DoesNotExist:
+            app_user = Spotify_User(name=social.uid)
+
+        app_user.access_token = social.get_access_token(
+            load_strategy())  # If necessary, the access token is updated
+        app_user.refresh_token = social.extra_data["refresh_token"]
+        app_user.save()
+        return app_user
+    else:
+        exit()

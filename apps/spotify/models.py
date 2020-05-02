@@ -65,24 +65,6 @@ class Spotify_User(models.Model):
     def __str__(self):
         return self.name
 
-    @classmethod
-    def get_user(cls, request):  # Returns the current user from any view.
-        if request.user.is_authenticated:
-            django_user = request.user  # Django.contrib.auth users
-            social = django_user.social_auth.get(provider='spotify')  # User of social_django
-            try:
-                app_user = cls.objects.get(name=social.uid)  # Apps.spotify user
-            except cls.DoesNotExist:
-                app_user = cls(name=social.uid)
-
-            app_user.access_token = social.get_access_token(
-                load_strategy())  # If necessary, the access token is updated
-            app_user.refresh_token = social.extra_data["refresh_token"]
-            app_user.save()
-            return app_user
-        else:
-            exit()
-
 
 class Playlist(models.Model):
     id = models.CharField(max_length=200, primary_key=True)  # Spotify id

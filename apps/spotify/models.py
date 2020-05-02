@@ -90,21 +90,7 @@ class Playlist(models.Model):
         playlist.save()
         return playlist
 
-    @classmethod
-    def get_playlists(cls, user):  # Get a List of a User's Playlists
-        response = requests.get(
-            'https://api.spotify.com/v1/me/playlists',
-            params={'access_token': user.access_token}
-        )
-        if response.status_code != 200:
-            exit()
-        playlists_dict = response.json()["items"]  # Array of dictionaries for each playlist
-        playlists_list = []  # Remove playlists that do not appear.
-        for playlist_json in playlists_dict:
-            id = playlist_json['id']
-            name = playlist_json['name']
-            playlists_list.append(cls.get_playlist(id=id, name=name, user=user))
-        return playlists_list
+
 
     def get_songs(self):
         response = requests.get(

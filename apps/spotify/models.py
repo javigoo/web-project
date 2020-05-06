@@ -1,6 +1,4 @@
-import requests
 from django.db import models
-from social_django.utils import load_strategy
 
 
 # Create your models here.
@@ -89,24 +87,3 @@ class Playlist(models.Model):
         playlist.user = user
         playlist.save()
         return playlist
-
-
-
-    def get_songs(self):
-        response = requests.get(
-            'https://api.spotify.com/v1/playlists/' + self.id + '/tracks',
-            params={'access_token': self.user.access_token}
-        )
-        if response.status_code != 200:
-            exit()
-        songs_dict = response.json()['items']
-        songs_list = []
-        for song_json in songs_dict:
-            id = song_json['track']['id']
-            artists = song_json['track']['artists']
-            name = song_json['track']['name']
-            rate = song_json['track']['popularity']
-            song = Song.get_song(id=id, artists=artists, name=name, rate=rate)
-            self.songs.add(song)
-            songs_list.append(song)
-        return songs_list

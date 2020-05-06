@@ -1,8 +1,10 @@
+import requests
 from django.contrib.auth import logout
 from django.contrib.auth.models import User
 from django.http import Http404
 from django.shortcuts import render
 from rest_framework import viewsets
+from social_django.utils import load_strategy
 
 from apps.spotify.models import *
 from apps.spotify.serializers import UserSerializer
@@ -39,7 +41,7 @@ def log_out(request):
 
 def infoplaylist(request, playlist_id):
     playlist = Playlist.objects.get(id=playlist_id)
-    songs = playlist.get_songs()
+    songs = get_songs(playlist)
     return render(request, 'spotify/infoplaylist.html', {'song_list': songs, 'playlist': playlist.name})
 
 
@@ -94,3 +96,21 @@ def get_playlists(user):  # Get a List of a User's Playlists
         name = playlist_json['name']
         playlists_list.append(Playlist.get_playlist(id=id, name=name, user=user))
     return playlists_list
+
+
+def get_songs(self):
+    response = requests.get('https://api.spotify.com/v1/playlists/' + self.id + '/tracks',
+                            params={'access_token': self.user.access_token})
+    if response.status_code != 200:
+        exit()
+    songs_dict = response.json()['items']
+    songs_list = []
+    for song_json in songs_dict:
+        id = song_json['track']['id']
+        artists = song_json['track']['artists']
+        name = song_json['track']['name']
+        rate = song_json['track']['popularity']
+        song = Song.get_song(id=id, artists=artists, name=name, rate=rate)
+        self.songs.add(song)
+        songs_list.append(song)
+    return songs_list

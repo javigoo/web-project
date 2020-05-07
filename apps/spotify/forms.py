@@ -5,4 +5,4 @@ from apps.spotify.models import Playlist
 class PlaylistForm(ModelForm):
     class Meta:
         model = Playlist
-        exclude = ('user', 'date',)
+        fields = '__all__'  # Para un atributo determinado: ['name', 'duration']

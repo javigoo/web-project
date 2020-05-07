@@ -2,8 +2,7 @@ import requests
 from django.contrib.auth import logout
 from django.contrib.auth.models import User
 from django.http import Http404
-from django.shortcuts import render
-from django.views.generic import CreateView
+from django.shortcuts import render, redirect
 from rest_framework import viewsets
 from social_django.utils import load_strategy
 
@@ -63,14 +62,18 @@ class UserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
 
 
-class PlaylistCreate(CreateView):
-    model = Playlist
-    template_name = 'spotify/form.html'
-    form_class = PlaylistForm
+def create_playlist(request):
+    form = PlaylistForm()
+    if request.method == 'POST':
+        #print('Printing post:', request.POST)
+        form = PlaylistForm(request.POST)
+        if form.is_valid():
+            form.save()     # Aqui deberiamos conectarnos con la api de spoti y crear la nueva playlist
+            return redirect('/')
 
-    def form_valid(self, form):
-        form.instance.user = self.request.user
-        return super(PlaylistCreate, self).form_valid(form)
+    context = {'form': form}
+    return render(request, 'spotify/form.html', context)
+
 
 # API Queries
 

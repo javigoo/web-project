@@ -104,6 +104,7 @@ def get_user(request):  # Returns the current user from any view.
 
 
 def get_playlists(user):  # Get a List of a User's Playlists
+
     response = requests.get(
         'https://api.spotify.com/v1/me/playlists',
         params={'access_token': user.access_token}
@@ -116,6 +117,10 @@ def get_playlists(user):  # Get a List of a User's Playlists
         id = playlist_json['id']
         name = playlist_json['name']
         playlists_list.append(Playlist.get_playlist(id=id, name=name, user=user))
+
+    for playlist in Playlist.objects.filter(user=user):     # Añade las playlist creadas a traves de Spotifly
+        playlists_list.append(playlist)
+
     return playlists_list
 
 

@@ -26,7 +26,7 @@
 
 ### Observations
 
-- [ ] You should separte models definitions from API queries.
+- [x] You should separte models definitions from API queries.
 
 
 # Spotifly

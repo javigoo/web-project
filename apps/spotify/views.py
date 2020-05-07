@@ -8,7 +8,7 @@ from social_django.utils import load_strategy
 
 from apps.spotify.forms import PlaylistForm
 from apps.spotify.models import *
-from apps.spotify.serializers import UserSerializer
+from apps.spotify.serializers import *
 
 
 # Create your views here.
@@ -60,6 +60,13 @@ class UserViewSet(viewsets.ModelViewSet):
     """
     queryset = User.objects.all().order_by('-date_joined')
     serializer_class = UserSerializer
+
+class PlaylistViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    queryset = Playlist.objects.all().order_by('-duration')
+    serializer_class = PlaylistSerializer
 
 
 def create_playlist(request):

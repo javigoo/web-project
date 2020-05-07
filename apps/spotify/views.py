@@ -3,9 +3,11 @@ from django.contrib.auth import logout
 from django.contrib.auth.models import User
 from django.http import Http404
 from django.shortcuts import render
+from django.views.generic import CreateView
 from rest_framework import viewsets
 from social_django.utils import load_strategy
 
+from apps.spotify.forms import PlaylistForm
 from apps.spotify.models import *
 from apps.spotify.serializers import UserSerializer
 
@@ -60,6 +62,15 @@ class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all().order_by('-date_joined')
     serializer_class = UserSerializer
 
+
+class PlaylistCreate(CreateView):
+    model = Playlist
+    template_name = 'spotify/form.html'
+    form_class = PlaylistForm
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(PlaylistCreate, self).form_valid(form)
 
 # API Queries
 

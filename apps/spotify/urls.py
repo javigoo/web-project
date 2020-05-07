@@ -3,6 +3,7 @@ from django.urls import path, include
 from rest_framework import routers
 
 from . import views
+from .views import PlaylistCreate
 
 router = routers.DefaultRouter()
 router.register(r'users', views.UserViewSet)
@@ -17,5 +18,8 @@ urlpatterns = [
     path('playlist/', views.playlist_view, name='playlist'),
     path('playlist\\/(?P<playlist_id>[0-9]+)$', views.infoplaylist, name='infoplaylist'),
     path('artist/', views.artist_view, name='artist'),
-    url(r'^', include(router.urls))
+    url(r'^', include(router.urls)),
+
+    # Create a playlist, /myrestaurants/restaurants/create/
+    path('playlist/create', PlaylistCreate.as_view(), name='playlist_create'),
 ]

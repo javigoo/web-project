@@ -1,12 +1,13 @@
 version: '3'
 
+PORT=8000
 services:
   django:
     build: .
-    command: python manage.py runserver 0.0.0.0:8000 # El 0.0.0.0 significa que podemos acceder al sitio desde cualquier direccion del host,
+    command: python manage.py runserver 0.0.0.0:${PORT} # El 0.0.0.0 significa que podemos acceder al sitio desde cualquier direccion del host,
     # pero para poder usar OAuth2 entraremos con 127.0.0.1: .
     ports:
-      - "8000:8000"
+      - "${PORT}:${PORT}"
     volumes:
       - ./:/django
     restart: always

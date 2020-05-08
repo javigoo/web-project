@@ -60,7 +60,7 @@ def create_playlist(request):
             post = form.save(commit=False)     # Aqui deberiamos conectarnos con la api de spoti y crear la nueva playlist
             #añade usuario y id
             post.user = get_user(request)
-            post.id = '123456789'
+            post.id = hash((post.name,post.user))
             post.is_local = True
             post.save()
             return redirect('/playlist')

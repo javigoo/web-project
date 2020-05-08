@@ -65,7 +65,7 @@ class Spotify_User(models.Model):
 
 
 class Playlist(models.Model):
-    id = models.CharField(max_length=200, primary_key=True)  # Spotify id
+    id = models.CharField(max_length=256, primary_key=True)  # Spotify id
     name = models.CharField(max_length=30, null=True)
     duration = models.IntegerField(default=0, null=True)
 

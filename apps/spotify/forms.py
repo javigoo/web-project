@@ -5,4 +5,4 @@ from apps.spotify.models import Playlist
 class PlaylistForm(ModelForm):
     class Meta:
         model = Playlist
-        fields = '__all__'  # Para un atributo determinado: ['name', 'duration']
+        fields = '__all__'  # Para registrarlas en spotify, el usuario y el id te lo asignara spoti: ['name', 'duration', 'songs']

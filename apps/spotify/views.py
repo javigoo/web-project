@@ -66,6 +66,16 @@ def create_playlist(request):
 
 # API Queries
 
+def post_playlist(user):
+    user_id = get_user()
+    response = requests.get(
+        'https://api.spotify.com/v1/users/'+user_id+'/playlists',
+        params={'access_token': user.access_token}
+    )
+    if response.status_code != 200:
+        exit()
+    # Manda json a spotify.
+
 
 def get_user(request):  # Returns the current user from any view.
     if request.user.is_authenticated:

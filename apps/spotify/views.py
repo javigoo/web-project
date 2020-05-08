@@ -61,6 +61,7 @@ def create_playlist(request):
             #añade usuario y id
             post.user = get_user(request)
             post.id = '123456789'
+            post.is_local = True
             post.save()
             return redirect('/playlist')
 

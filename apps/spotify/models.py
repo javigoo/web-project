@@ -74,6 +74,8 @@ class Playlist(models.Model):
 
     songs = models.ManyToManyField(Song)
 
+    is_local = models.BooleanField(default=False)
+
     def __str__(self):
         return self.name
 

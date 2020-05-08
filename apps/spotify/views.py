@@ -117,7 +117,8 @@ def get_playlists(user):  # Get a List of a User's Playlists
         playlists_list.append(Playlist.get_playlist(id=id, name=name, user=user))
 
     for playlist in Playlist.objects.filter(user=user):     # Añade las playlist creadas a traves de Spotifly
-        playlists_list.append(playlist)
+        if playlist not in playlists_list:
+            playlists_list.append(playlist)
 
     return playlists_list
 

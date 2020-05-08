@@ -57,11 +57,12 @@ def create_playlist(request):
         #print('Printing post:', request.POST)
         form = PlaylistForm(request.POST)
         if form.is_valid():
-            post = form.save()     # Aqui deberiamos conectarnos con la api de spoti y crear la nueva playlist
+            post = form.save(commit=False)     # Aqui deberiamos conectarnos con la api de spoti y crear la nueva playlist
             #añade usuario y id
             post.user = get_user(request)
             post.id = '123456789'
-            return redirect('/')
+            post.save()
+            return redirect('/playlist')
 
     context = {'form': form}
     return render(request, 'spotify/form.html', context)
@@ -78,6 +79,7 @@ def post_playlist(user):
     if response.status_code != 200:
         exit()
     # Manda json a spotify.
+    # .....
 
 
 def get_user(request):  # Returns the current user from any view.

@@ -1,12 +1,7 @@
 from django.conf.urls import url
 from django.urls import path, include
-from rest_framework import routers
 
 from . import views
-
-router = routers.DefaultRouter()
-router.register(r'v/users', views.UserViewSet)
-router.register(r'v/playlists', views.PlaylistViewSet)
 
 app_name = 'spotify'
 urlpatterns = [
@@ -18,7 +13,6 @@ urlpatterns = [
     path('playlist/', views.playlist_view, name='playlist'),
     path('playlist\\/(?P<playlist_id>[0-9]+)$', views.infoplaylist, name='infoplaylist'),
     path('artist/', views.artist_view, name='artist'),
-    url(r'^', include(router.urls)),
 
     path('playlist/create', views.create_playlist, name='create_playlist'), # Create a playlist
 ]

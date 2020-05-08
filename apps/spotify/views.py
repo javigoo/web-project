@@ -3,13 +3,10 @@ from django.contrib.auth import logout
 from django.contrib.auth.models import User
 from django.http import Http404
 from django.shortcuts import render, redirect
-from rest_framework import viewsets
 from social_django.utils import load_strategy
 
 from apps.spotify.forms import PlaylistForm
 from apps.spotify.models import *
-from apps.spotify.serializers import *
-
 
 # Create your views here.
 def home(request):
@@ -52,21 +49,6 @@ def artist_view(request):
     except len(artists) == 0:
         raise Http404("Error, no artist information available.")
     return render(request, 'spotify/artists.html', {'artistlist': artists})
-
-
-class UserViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint that allows users to be viewed or edited.
-    """
-    queryset = User.objects.all().order_by('-date_joined')
-    serializer_class = UserSerializer
-
-class PlaylistViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint that allows users to be viewed or edited.
-    """
-    queryset = Playlist.objects.all().order_by('-duration')
-    serializer_class = PlaylistSerializer
 
 
 def create_playlist(request):

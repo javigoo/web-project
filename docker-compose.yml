@@ -10,3 +10,4 @@ services:
     volumes:
       - ./:/django
     restart: always
+    container_name: django

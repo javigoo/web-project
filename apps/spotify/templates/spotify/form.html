@@ -12,3 +12,12 @@
     </form>
 
 {% endblock %}
+
+<script>
+    $(function () {
+        var songs = ["1","2","3"];
+        $( "#id_country" ).autocomplete({
+            source: songs
+        });
+    });
+</script>

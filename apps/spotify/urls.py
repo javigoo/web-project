@@ -14,5 +14,7 @@ urlpatterns = [
     path('playlist\\/(?P<playlist_id>[0-9]+)$', views.infoplaylist, name='infoplaylist'),
     path('artist/', views.artist_view, name='artist'),
 
-    path('playlist/create', views.create_playlist, name='create_playlist'), # Create a playlist
+    path('playlist/create', views.create_playlist, name='create_playlist'),     # Create a playlist
+    path('playlist/update/<str:pk>/', views.update_playlist, name='update_playlist'),
+
 ]

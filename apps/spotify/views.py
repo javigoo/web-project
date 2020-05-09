@@ -26,7 +26,7 @@ def top_songs(request):
 def playlist_view(request):
     user = get_user(request)
     playlists = get_playlists(user)
-    return render(request, 'spotify/playlists.html', {'playlist_list': playlists})
+    return render(request, 'spotify/playlist_form.html', {'playlist_list': playlists})
 
 
 def profile(request):
@@ -76,8 +76,18 @@ def create_playlist(request):
     return render(request, 'spotify/form.html', context)
 
 
-def modify_playlist(request, playlist_id):
-    return render(request, 'spotify/modify_form.html', {'playlist_id': playlist_id})
+def update_playlist(request, pk):
+    playlist = Playlist.objects.get(id=pk)
+    form = PlaylistForm(instance=playlist)
+
+    if request.method == 'POST':
+        form = PlaylistForm(request.POST, instance=playlist)
+        if form.is_valid():
+            form.save()
+            return redirect('/playlist')
+
+    context = {'form': form}
+    return render(request, 'spotify/form.html', context)
 
 
 # API Queries

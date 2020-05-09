@@ -6,7 +6,12 @@
         <h1> Playlists: </h1>
         {% for playlist in playlist_list %}
             {% if playlist.is_local == True %}
-                <p><a href="{% url 'spotify:infoplaylist' playlist_id=playlist.id %}">{{ playlist.name }}</a><a>--delete-- </a><a href="{% url 'spotify:modify_playlist'  playlist_id=playlist.id %}">--modify-- </a><a>--delete--</a></a></p>
+                <p>
+                    <a href="{% url 'spotify:infoplaylist' playlist_id=playlist.id %}">{{ playlist.name }}</a>
+                    <a href="">--delete-- </a>
+                    <a href="">--modify-- </a>
+
+                </p>
             {% else %}
             <p><a href="{% url 'spotify:infoplaylist' playlist_id=playlist.id %}">{{ playlist.name }}</a></p>
             {% endif %}

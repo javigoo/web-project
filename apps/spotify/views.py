@@ -68,6 +68,7 @@ def create_playlist(request):
     context = {'form': form}
     return render(request, 'spotify/form.html', context)
 
+
 def modify_playlist(request, playlist_id):
     return render(request, 'spotify/modify_form.html', {'playlist_id': playlist_id})
 

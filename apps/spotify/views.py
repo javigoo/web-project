@@ -9,6 +9,8 @@ from apps.spotify.forms import PlaylistForm
 from apps.spotify.models import *
 
 # Create your views here.
+
+
 def home(request):
     return render(request, 'spotify/home.html', {})
 
@@ -39,7 +41,12 @@ def log_out(request):
 
 def infoplaylist(request, playlist_id):
     playlist = Playlist.objects.get(id=playlist_id)
-    songs = get_songs(playlist)
+
+    # La comprobacion deberia hacerse sobre playlist (Local o no)
+    songs = Playlist.get_songs_list(playlist_id)
+    if len(songs) == 0:
+        songs = get_songs(playlist)
+
     return render(request, 'spotify/infoplaylist.html', {'song_list': songs, 'playlist': playlist.name})
 
 
@@ -131,7 +138,7 @@ def get_songs(self):
     response = requests.get('https://api.spotify.com/v1/playlists/' + self.id + '/tracks',
                             params={'access_token': self.user.access_token})
     if response.status_code != 200:
-        exit()
+        return []
     songs_dict = response.json()['items']
     songs_list = []
     for song_json in songs_dict:

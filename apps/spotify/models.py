@@ -89,3 +89,16 @@ class Playlist(models.Model):
         playlist.user = user
         playlist.save()
         return playlist
+
+    @classmethod
+    def get_songs_list(cls, id):
+
+        songs_list = []
+        results = Playlist.objects.filter(id=id)
+        for query in results:
+            query_set = query.songs.all()
+            for song_index in range(len(query_set)):
+                song = query_set[song_index]
+                songs_list.append(song)
+
+        return songs_list

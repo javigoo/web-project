@@ -16,5 +16,6 @@ urlpatterns = [
 
     path('playlist/create', views.create_playlist, name='create_playlist'),     # Create a playlist
     path('playlist/update/<str:pk>/', views.update_playlist, name='update_playlist'),
+    path('playlist/delete/<str:pk>/', views.delete_playlist, name='delete_playlist'),
 
 ]

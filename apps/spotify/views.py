@@ -90,7 +90,18 @@ def update_playlist(request, pk):
     return render(request, 'spotify/form.html', context)
 
 
+def delete_playlist(request, pk):
+    playlist = Playlist.objects.get(id=pk)
+
+    if request.method == 'POST':
+        playlist.delete()
+        return redirect('spotify:playlist')
+
+    context = {'item': playlist}
+    return render(request, 'spotify/delete.html', context)
+
 # API Queries
+
 
 def post_playlist(user):
     user_id = get_user()

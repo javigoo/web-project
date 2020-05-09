@@ -3,6 +3,41 @@
 
 {% block page_content %}
 
+    <script>
+        $(function() {
+            $.getJSON( "static/songs.json", function( data ) {
+                $("#id_song").autocomplete({
+                    source: songs
+                });
+            });
+
+            $("#name").autocomplete({
+                source: function( request, response ) {
+                    $.ajax({
+                        url: "https://api.spotify.com/v1/tracks",
+                        dataType: "jsonp",
+                        data: {
+                            featureClass: "P",
+                            maxRows: 10,
+                            name_startsWith: request.term,
+                            username: "demo"
+                        },
+                        success: function( data ) {
+                            response( $.map( data.songs, function( item ) {
+                                return {
+                                    id: item.id,
+                                    name: item.name,
+                                    rate: item.rate,
+                                    artist: item.artist
+                                }
+                            }));
+                        }
+                    });
+                },
+            });
+        });
+    </script>
+
     <h1> Add a playlist </h1>
 
     <form action="" method="POST">

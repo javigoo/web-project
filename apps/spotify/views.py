@@ -63,11 +63,11 @@ def create_playlist(request):
     if request.method == 'POST':
         form = PlaylistForm(request.POST)
         if form.is_valid():
-            print(form)
-            form.user = get_user(request)
-            form.id = hash((form.user))
-            form.is_local = True
-            form.save()
+            post = form.save(commit=False)
+            post.user = get_user(request)
+            post.id = hash((post.name, post.user))
+            post.is_local = True
+            post.save()
             return redirect('/playlist')
 
     context = {'form': form}

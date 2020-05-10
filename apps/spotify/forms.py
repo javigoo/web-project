@@ -5,4 +5,4 @@ from apps.spotify.models import Playlist
 class PlaylistForm(ModelForm):
     class Meta:
         model = Playlist
-        fields = ['name', 'songs']
+        fields = ['name']

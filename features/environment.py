@@ -8,7 +8,7 @@ from django.shortcuts import resolve_url
 from django.test.runner import DiscoverRunner
 from splinter.browser import Browser
 
-os.environ["DJANGO_SETTINGS_MODULE"] = "myrecommendations.settings"
+os.environ["DJANGO_SETTINGS_MODULE"] = "web_application.settings"
 
 
 class ExtendedContext(Context):

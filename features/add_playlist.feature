@@ -1,3 +1,8 @@
+Feature: Add playlist
+  In order to keep track of the playlists I created,
+  As a user
+  I want to a add a playlist together with its name and songs
+
 Background: There is a registered user
     Given Exists a user "user" with password "password"
 

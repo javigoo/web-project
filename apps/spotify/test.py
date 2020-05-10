@@ -8,7 +8,7 @@ class PlaylistTestCase(TestCase):
 
     def setUp(self):
         user = Spotify_User.objects.create(name="user")
-        Playlist.objects.create(id=1234567890, name="playlist", duration=10, user=user)
+        Playlist.objects.create(id=1234567890, name="playlist", user=user)
 
     def test_playlist(self):
         """ Check if the user who created the playlist is correct """

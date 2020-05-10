@@ -1,6 +1,11 @@
 Django>=3.0.2,<3.1.0
 djangorestframework>=3.10.3,<3.11.0
 social-auth-app-django>=3.1.0,<3.2.0
+
+behave==1.*
+splinter==0.*
+Pillow==7.*
+
 python-social-auth
 asgiref==3.2.3
 beautifulsoup4==4.3.2

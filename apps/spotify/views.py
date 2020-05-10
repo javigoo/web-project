@@ -114,6 +114,7 @@ def post_playlist(user):
 
 
 def get_user(request):  # Returns the current user from any view.
+
     if request.user.is_authenticated:
         django_user = request.user  # Django.contrib.auth users
         social = django_user.social_auth.get(provider='spotify')  # User of social_django

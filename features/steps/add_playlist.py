@@ -1,6 +1,8 @@
-
+import operator
+from functools import reduce
 
 from behave import *
+from django.db.models import Q
 
 use_step_matcher("parse")
 
@@ -17,8 +19,7 @@ def step_impl(context):
 
 @then('I\'m viewing the details page for playlist by "{user}"')
 def step_impl(context, user):
-    """q_list = [Q((attribute, context.table.rows[0][attribute])) for attribute in context.table.headings]
+    q_list = [Q((attribute, context.table.rows[0][attribute])) for attribute in context.table.headings]
     from apps.spotify.models import Playlist
-    restaurant = Playlist.objects.filter(reduce(operator.and_, q_list)).get()
-    assert context.browser.url == context.get_url(restaurant)"""
-    pass
+    playlist = Playlist.objects.filter(reduce(operator.and_, q_list)).get()
+    assert context.browser.url == context.get_url(playlist)

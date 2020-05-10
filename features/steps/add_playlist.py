@@ -1,5 +1,4 @@
-import operator
-from functools import reduce
+
 
 from behave import *
 

@@ -18,4 +18,3 @@ Feature: Modify Playlist
     Then I'm viewing the details from playlist that changes the name
       | name            |
       | Javi's playlist |
-    And There are 1 playlist named Javi Playlist

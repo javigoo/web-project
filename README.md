@@ -125,18 +125,6 @@ Finally make the pull request
 * **Jose Miguel Avellana Lopez** - [Jal04](https://github.com/jal04)
 * **Víctor Alcobé Sorolla** - [Valcobe](https://github.com/valcobe)
 
-## Accounts
-
-In order to delete, modify and create new instances from the Django administration application, log in with:
-```
-Username: admin
-Password: admin
-```
-If you want to log in with a Spotify account, log in with:
-```
-E-mail: spotiflywebproject@gmail.com
-Password: webproject1.
-```
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details

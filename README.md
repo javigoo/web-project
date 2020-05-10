@@ -1,34 +1,3 @@
-## Things to correct
-
-### 12factor guidelines
-
-- [ ] A.2. Some commits have an unclear name.
-- [ ] B.1. Not all dependencies in the requirements.txt file have been defined using: dep-name>=ma.mi.pa,<ma.mi.pa.
-- [ ] B.2. Not all config variables have been defined as a environment variable.
-- [x] C.1. There is no a proper development branch in the repository.
-
-### TravisCI
-
-- [ ] B.1. Deploy specification is not declared.
-
-
-### Docker container
-
-- [ ] A.2. Not added a runner user as a security countermeasure.
-- [ ] A.3. Some great (but not mandatory) specifications are missing in the docker-compose.yml file like container_name, restart behavior, etc.
-- [ ] B.1. Some configuration in the docker-compose.yml file has not been setted using environment variables when was possible.
-
-
-### Heroku
-
-- [ ] B.1. Not used gunicorn as a web server for production.
-
-
-### Observations
-
-- [x] You should separte models definitions from API queries.
-
-
 # Spotifly
 
 The topic of this project is about music. We will use the Spotify API to get information about the artists, to make a TOP 10 tracks and to create customized playlists.
@@ -43,8 +12,13 @@ What things you need to install the software and how to install them
 
 - Install python3
 ```
-sudo apt-get update
-sudo apt-get install python3
+apt-get update
+apt-get install python3
+```
+
+- Install ChromeDriver
+```
+apt-get install chromedriver
 ```
 
 ### Installing
@@ -90,6 +64,11 @@ To run the automated tests for this system use:
 ```
 python3 manage.py test apps
 ```
+To run E2E test use:
+```
+behave
+```
+
 The tests are also performed automatically with each commit.
 
 ## Deployment

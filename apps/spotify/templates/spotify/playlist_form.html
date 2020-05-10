@@ -8,8 +8,8 @@
             {% if playlist.is_local == True %}
                 <p>
                     <a href="{% url 'spotify:infoplaylist' playlist_id=playlist.id %}">{{ playlist.name }}</a>
-                    <a href="{% url 'spotify:delete_playlist'  playlist.id %}">--delete-- </a>
-                    <a href="{% url 'spotify:update_playlist'  playlist.id %}">--update-- </a>
+                    <a id="delete" href="{% url 'spotify:delete_playlist'  playlist.id %}">--delete-- </a>
+                    <a id="update" href="{% url 'spotify:update_playlist'  playlist.id %}">--update-- </a>
 
                 </p>
             {% else %}

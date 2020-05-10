@@ -5,7 +5,7 @@ Feature: Modify Playlist
 
   Background: There are registered users and playlist by one of them
     Given Exists a user "user1" with password "password"
-    And Exists restaurant registered by "user1"
+    And Exists playlist registered by "user1"
       | name           |
       | Gaby's playlist|
 
@@ -15,7 +15,7 @@ Feature: Modify Playlist
     And I edit the current playlist
       | name           |
       | Javi's playlist|
-    Then I'm viewing the details page for dish at restaurant "The Tavern" by "user2"
+    Then I'm viewing the details from playlist that changes the name
       | name            |
       | Javi's playlist |
-    And There are 1 playlist
+    And There are 1 playlist named Javi Playlist

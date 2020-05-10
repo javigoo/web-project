@@ -144,3 +144,5 @@ SOCIAL_AUTH_PIPELINE = (
     'social_core.pipeline.user.user_details',
 )
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+os.environ['DJANGO_LIVE_TEST_SERVER_ADDRESS'] = "localhost:8000"    # Not working

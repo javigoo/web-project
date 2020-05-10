@@ -10,6 +10,7 @@ from splinter.browser import Browser
 
 
 os.environ["DJANGO_SETTINGS_MODULE"] = "web_application.settings"
+#os.environ['DJANGO_LIVE_TEST_SERVER_ADDRESS'] = "localhost:8080"    # Not working
 
 
 class ExtendedContext(Context):
@@ -23,6 +24,9 @@ def before_all(context):
     context.test_runner = DiscoverRunner()
     context.test_runner.setup_test_environment()
     context.browser = Browser('chrome', headless=False)     # headless=False -> Show the browser while testing
+    #context.port = 8080     # Not working
+    #ExtendedContext.port = 8080     # Not working
+    #context.server_url = "http://127.0.0.1:8000"   # Not working
 
 
 def before_scenario(context, scenario):

@@ -4,10 +4,9 @@ Feature: Add playlist
   I want to a add a playlist together with its name and songs
 
 Background: There is a registered user
-    Given Exists a user "user" with password "password"
 
   Scenario: Add just playlist name
-    Given I login as user "user" with password "password"
+    Given I login as user "spotiflywebproject@gmail.com" with password "webproject1."
     When I add playlist
       | name        |
       | Temazos     |

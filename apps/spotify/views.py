@@ -61,15 +61,13 @@ def artist_view(request):
 def create_playlist(request):
     form = PlaylistForm()
     if request.method == 'POST':
-        #print('Printing post:', request.POST)
         form = PlaylistForm(request.POST)
         if form.is_valid():
-            post = form.save(commit=False)     # Aqui deberiamos conectarnos con la api de spoti y crear la nueva playlist
-            #añade usuario y id
-            post.user = get_user(request)
-            post.id = hash((post.name,post.user))
-            post.is_local = True
-            post.save()
+            print(form)
+            form.user = get_user(request)
+            form.id = hash((form.user))
+            form.is_local = True
+            form.save()
             return redirect('/playlist')
 
     context = {'form': form}

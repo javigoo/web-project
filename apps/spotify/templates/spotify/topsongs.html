@@ -1,14 +1,20 @@
 {% extends "base.html" %}
-
 {% block page_content %}
 
-  {% if topsonglist %}
+<div vocab="http://schema.org/" typeof="MusicRecording">
+
     <h1> Top Songs </h1>
-      {% for song in topsonglist %}
-        <p> {{song.name}} - {{song.rate}}</p>
-      {% endfor %}
-  {% else %}
-      <p> There are no songs. You can add them from admin. </p>
-  {% endif %}
+
+    {% if topsonglist %}
+        {% for song in topsonglist %}
+            <li> <span property="name">{{ song.name }}</span> - <span property="position">{{ song.rate }}</span></li>
+        {% endfor %}
+
+    {% else %}
+        <p> There are no songs. You can add them from admin. </p>
+
+    {% endif %}
+
+</div>
 
 {% endblock %}

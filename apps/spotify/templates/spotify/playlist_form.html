@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+
+    {% if playlist_list %}
+        <h1> Playlists: </h1>
+        {% for playlist in playlist_list %}
+            {% if playlist.is_local == True %}
+                <p>
+                    <a href="{% url 'spotify:infoplaylist' playlist_id=playlist.id %}">{{ playlist.name }}</a>
+                    <a id="delete" href="{% url 'spotify:delete_playlist'  playlist.id %}">--delete-- </a>
+                    <a id="update" href="{% url 'spotify:update_playlist'  playlist.id %}">--update-- </a>
+
+                </p>
+            {% else %}
+            <p><a href="{% url 'spotify:infoplaylist' playlist_id=playlist.id %}">{{ playlist.name }}</a></p>
+            {% endif %}
+        {% endfor %}
+    {% else %}
+        <p> There is no playlist. You you can add them from admin or logging. </p>
+    {% endif %}
+
+    <a href="{% url 'spotify:create_playlist' %}"> Add Playlist</a>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_content %}
+
+    <p> Are you sure you want to delete "{{ item }}"? <p>
+
+    <form action="{% url 'spotify:delete_playlist' item.id %}" method="POST">
+
+        {% csrf_token %}
+        <a href="{% url 'spotify:playlist' %}"> Cancel </a>
+        <input type="submit" name="Confirm">
+    </form>
+
+{% endblock %}

@@ -1,14 +1,20 @@
 {% extends "base.html" %}
-
 {% block page_content %}
 
+<div vocab="http://schema.org/" typeof="MusicGroup">
+
+    <h1> Artists </h1>
+
     {% if artistlist %}
-        <h1> Artists </h1>
         {% for artist in artistlist %}
-            <p> {{ artist.name }}: {{ artist.information }} </p>
+            <li> <span property="name">{{ artist.name }}</span>: <span property="knowsAbout">{{ artist.information }}</span>  </li>
         {% endfor %}
+
     {% else %}
         <p> No artist information available. You can add it from admin. </p>
+
     {% endif %}
+
+</div>
 
 {% endblock %}

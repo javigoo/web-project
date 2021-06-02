@@ -35,6 +35,6 @@ social-auth-core==3.2.0
 sqlparse==0.3.1
 tldextract==1.6
 unicodecsv==0.13.0
-urllib3==1.25.8
+urllib3==1.26.5
 Werkzeug==1.0.0
 whitenoise==5.0.0
